@@ -1,0 +1,56 @@
+[
+  {
+    "key": "general",
+    "label": "General",
+    "insight": "Explore universal messages and overall life energy.",
+    "image": "/images/categories/general_category_image.png",
+    "isPopular": true,
+    "isPremium": false,
+    "isNew": false
+  },
+  {
+    "key": "love",
+    "label": "Love",
+    "insight": "Guidance for love, relationships, and emotional bonds.",
+    "image": "/images/categories/love_category_image.png",
+    "isPopular": true,
+    "isPremium": false,
+    "isNew": false
+  },
+  {
+    "key": "career",
+    "label": "Career",
+    "insight": "Insights for your career, work, and material opportunities.",
+    "image": "/images/categories/career_category_image.png",
+    "isPopular": false,
+    "isPremium": false,
+    "isNew": false
+  },
+  {
+    "key": "spiritual",
+    "label": "Spiritual",
+    "insight": "Messages for spiritual growth, intuition, and inner journeys.",
+    "image": "/images/categories/spiritual_category_image.png",
+    "isPopular": false,
+    "isPremium": true,
+    "isNew": false
+  },
+  {
+    "key": "health",
+    "label": "Health",
+    "insight": "Guidance for mind, body, and soul wellness.",
+    "image": "/images/categories/health_category_image.png",
+    "isPopular": false,
+    "isPremium": false,
+    "isNew": true
+  },
+  {
+    "key": "custom",
+    "label": "Custom",
+    "insight": "A free space for your own questions and custom spreads.",
+    "image": "/images/categories/custom_category_image.png",
+    "isPopular": false,
+    "isPremium": false,
+    "isNew": false
+  }
+] 

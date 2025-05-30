@@ -1,0 +1,137 @@
+[
+  {
+    "key": "singleCard",
+    "label": "Single Card",
+    "desc": "Quick guidance with a single card—perfect for daily insights.",
+    "image": "/images/spreads/singleCard.png",
+    "cardCount": 1,
+    "isPopular": true,
+    "isNew": false
+  },
+  {
+    "key": "pastPresentFuture",
+    "label": "Past-Present-Future",
+    "desc": "Classic three-card spread to see your journey across time.",
+    "image": "/images/spreads/pastPresentFuture.png",
+    "cardCount": 3,
+    "isPopular": true,
+    "isNew": true
+  },
+  {
+    "key": "problemSolution",
+    "label": "Problem-Solution",
+    "desc": "Identify the root of a problem and find guidance for resolution.",
+    "image": "/images/spreads/problemSolution.png",
+    "cardCount": 3,
+    "isPopular": false,
+    "isNew": false
+  },
+  {
+    "key": "fiveCardPath",
+    "label": "Five Card Path",
+    "desc": "A five-step journey through your current situation.",
+    "image": "/images/spreads/fiveCardPath.png",
+    "cardCount": 5,
+    "isPopular": false,
+    "isNew": false
+  },
+  {
+    "key": "relationshipSpread",
+    "label": "Relationship Spread",
+    "desc": "Analyze relationship dynamics and potential.",
+    "image": "/images/spreads/relationshipSpread.png",
+    "cardCount": 7,
+    "isPopular": true,
+    "isNew": false
+  },
+  {
+    "key": "celticCross",
+    "label": "Celtic Cross",
+    "desc": "The most comprehensive spread for deep, multi-faceted questions.",
+    "image": "/images/spreads/celticCross.png",
+    "cardCount": 10,
+    "isPopular": true,
+    "isNew": false
+  },
+  {
+    "key": "yearlySpread",
+    "label": "Yearly Spread",
+    "desc": "A card for each month and a summary for the year.",
+    "image": "/images/spreads/yearlySpread.png",
+    "cardCount": 13,
+    "isPopular": false,
+    "isNew": false
+  },
+  {
+    "key": "mindBodySpirit",
+    "label": "Mind-Body-Spirit",
+    "desc": "A holistic look at your mind, body, and spirit.",
+    "image": "/images/spreads/mindBodySpirit.png",
+    "cardCount": 3,
+    "isPopular": false,
+    "isNew": false
+  },
+  {
+    "key": "astroLogicalCross",
+    "label": "Astrological Cross",
+    "desc": "Explore your question through astrological themes.",
+    "image": "/images/spreads/astroLogicalCross.png",
+    "cardCount": 5,
+    "isPopular": false,
+    "isNew": false
+  },
+  {
+    "key": "brokenHeart",
+    "label": "Broken Heart",
+    "desc": "Healing and new beginnings after emotional pain.",
+    "image": "/images/spreads/brokenHeart.png",
+    "cardCount": 5,
+    "isPopular": false,
+    "isNew": false
+  },
+  {
+    "key": "dreamInterpretation",
+    "label": "Dream Interpretation",
+    "desc": "Uncover the symbolic meaning of your dreams.",
+    "image": "/images/spreads/dreamInterpretation.png",
+    "cardCount": 3,
+    "isPopular": false,
+    "isNew": false
+  },
+  {
+    "key": "horseshoeSpread",
+    "label": "Horseshoe Spread",
+    "desc": "A broad overview of your situation with seven cards.",
+    "image": "/images/spreads/horseshoeSpread.png",
+    "cardCount": 7,
+    "isPopular": false,
+    "isNew": false
+  },
+  {
+    "key": "careerPathSpread",
+    "label": "Career Path Spread",
+    "desc": "Guidance for your career journey.",
+    "image": "/images/spreads/careerPathSpread.png",
+    "cardCount": 5,
+    "isPopular": false,
+    "isNew": false
+  },
+  {
+    "key": "fullMoonSpread",
+    "label": "Full Moon Spread",
+    "desc": "Illumination and completion with the energy of the full moon.",
+    "image": "/images/spreads/fullMoonSpread.png",
+    "cardCount": 6,
+    "isPopular": false,
+    "isNew": false
+  },
+  {
+    "key": "categoryReading",
+    "label": "Category Reading",
+    "desc": "A free-form spread for your own questions.",
+    "image": "/images/spreads/categoryReading.png",
+    "cardCount": 3,
+    "isPopular": false,
+    "isNew": false
+  }
+] 
