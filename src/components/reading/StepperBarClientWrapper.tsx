@@ -1,9 +1,9 @@
 "use client";
 import StepperBar from "./StepperBar";
 import { useRouter, usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
-export default function StepperBarClientWrapper({ steps, categorySelected, category, locale, spread }: {
-  steps: any[];
+export default function StepperBarClientWrapper({ categorySelected, category, locale, spread }: {
   categorySelected?: boolean;
   category?: string;
   locale: string;
@@ -11,13 +11,30 @@ export default function StepperBarClientWrapper({ steps, categorySelected, categ
 }) {
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations('common');
 
-  // step'i route'a göre otomatik belirle (tam path eşleşmesiyle)
+  const steps = [
+    {
+      label: t('reading_step_category'),
+      icon: '/images/icons/category.svg',
+      desc: t('reading_step_desc_category'),
+    },
+    {
+      label: t('reading_step_spread'),
+      icon: '/images/icons/spread.svg',
+      desc: t('reading_step_desc_spread'),
+    },
+    {
+      label: t('reading_step_cards'),
+      icon: '/images/icons/cards.svg',
+      desc: t('reading_step_desc_cards'),
+    },
+  ];
+
   let step = 0;
-  if (/\/category\/[^/]+\/spread\/[^/]+\/cards\/result$/.test(pathname)) step = 3;
-  else if (/\/category\/[^/]+\/spread\/[^/]+\/cards$/.test(pathname)) step = 2;
-  else if (/\/category\/[^/]+\/spread\/[^/]+$/.test(pathname)) step = 1;
-  else if (/\/category\/[^/]+$/.test(pathname)) step = 0;
+  if (category && !spread) step = 1;
+  if (category && spread) step = 2;
+  if (typeof window !== 'undefined' && /\/cards\/result$/.test(window.location.pathname)) step = 3;
 
   function handleStepChange(newStep: 0 | 1 | 2 | 3) {
     if (newStep === 0) router.push(`/${locale}/reading`);
@@ -30,7 +47,6 @@ export default function StepperBarClientWrapper({ steps, categorySelected, categ
     <StepperBar
       step={step}
       onStepChange={handleStepChange}
-      steps={steps}
       categorySelected={categorySelected}
       category={category}
     />

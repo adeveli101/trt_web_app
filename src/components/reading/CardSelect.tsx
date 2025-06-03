@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TarotCard, SpreadType } from "../../lib/tarotTypes";
 import tarotCardsData from "../../lib/data/tarot_cards_en.json";
 import UnveilButton from './UnveilButton';
@@ -23,12 +23,19 @@ export default function CardSelect({
 }: CardSelectProps) {
   const tarotCards: TarotCard[] = tarotCardsData.cards;
   const [revealing, setRevealing] = useState(false);
+  const [shuffleTrigger, setShuffleTrigger] = useState<number | null>(null);
 
   function handleUnveil() {
     if (onRevealStart) onRevealStart();
     setRevealing(true);
     setTimeout(() => {
       setSelectedCards([]);
+      setShuffleTrigger(Date.now());
+    }, 2200); // 2.2 saniye geçiş animasyonu
+  }
+
+  useEffect(() => {
+    if (shuffleTrigger) {
       const available = [...tarotCards];
       const shuffled = available.sort(() => Math.random() - 0.5);
       let i = 0;
@@ -45,8 +52,8 @@ export default function CardSelect({
         }
       }
       setTimeout(revealNext, 300);
-    }, 2200); // 2.2 saniye geçiş animasyonu
-  }
+    }
+  }, [shuffleTrigger, tarotCards, spread.cardCount, onRevealComplete]);
 
   return (
     <div className="flex flex-col items-center w-full">

@@ -184,8 +184,10 @@ export default function ReadingStepper({ initialCategory, steps, translations, s
                   </div>
                   <div className="flex justify-center mt-8">
                     <UnveilButton
+                      label={translations.reading_unveil_button}
                       onClick={() => router.push(`/${params.locale}/reading/category/${category}/spread/${spread}/cards/result`)}
                       disabled={selectedCards.length < cardCount}
+                      backgroundImage="/images/buttons/unveilTheStars_btn.png"
                     />
                   </div>
                 </>

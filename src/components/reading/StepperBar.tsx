@@ -2,15 +2,33 @@
 import React from "react";
 import clsx from "clsx";
 import { StepSeparatorSVG } from "../ui/StepSeparatorSVG";
+import { useTranslations } from "next-intl";
 
-export interface Step {
-  label: string;
-  icon: string;
-  desc: string;
-  keyword: string;
-}
+export default function StepperBar({ step, onStepChange, categorySelected, category }: { step: number; onStepChange: (step: 0 | 1 | 2) => void, categorySelected?: boolean, category?: string }) {
+  const t = useTranslations('common');
+  const steps = [
+    {
+      label: t('reading_step_category'),
+      icon: '/images/steps/category_icon.png',
+      desc: t('reading_step_desc_category'),
+    },
+    {
+      label: t('reading_step_spread'),
+      icon: '/images/steps/spread_icon.png',
+      desc: t('reading_step_desc_spread'),
+    },
+    {
+      label: t('reading_step_cards'),
+      icon: '/images/steps/cards_icon.png',
+      desc: t('reading_step_desc_cards'),
+    },
+    {
+      label: t('reading_step_result'),
+      icon: '/images/steps/result_icon.png',
+      desc: t('reading_step_desc_result'),
+    },
+  ];
 
-export default function StepperBar({ step, onStepChange, steps, categorySelected, category }: { step: number; onStepChange: (step: 0 | 1 | 2) => void, steps: Step[], categorySelected?: boolean, category?: string }) {
   // Tailwind'e eklenmiş olması gereken animasyon örneği:
   // .animate-gradient-move { background-size: 200% 200%; animation: gradientMove 8s ease-in-out infinite; }
   // @keyframes gradientMove { 0% {background-position:0% 50%} 50% {background-position:100% 50%} 100% {background-position:0% 50%} }

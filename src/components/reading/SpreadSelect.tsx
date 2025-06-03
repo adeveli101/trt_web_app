@@ -3,6 +3,10 @@ import React, { useState } from "react";
 import { SpreadType } from "../../lib/tarotTypes";
 import { FiInfo } from 'react-icons/fi';
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslations } from "next-intl";
+import StepperBarClientWrapper from "./StepperBarClientWrapper";
+import { useParams } from "next/navigation";
+import { spreadCategoryMap } from "@/lib/data/spreadCategoryMap";
 
 const allSpreads: SpreadType[] = [
   { name: "singleCard", cardCount: 1 },
@@ -115,67 +119,59 @@ const spreadDetails: Record<string, { title: string; desc: string; longDesc: str
   },
 };
 
-const categorySpreadMap: Record<string, string[]> = {
-  general: ["singleCard", "pastPresentFuture", "problemSolution", "celticCross", "yearlySpread", "horseshoeSpread", "dreamInterpretation"],
-  love: ["singleCard", "relationshipSpread", "pastPresentFuture", "brokenHeart", "astroLogicalCross"],
-  career: ["singleCard", "careerPathSpread", "fiveCardPath", "problemSolution", "fullMoonSpread"],
-  spiritual: ["singleCard", "mindBodySpirit", "astroLogicalCross", "fullMoonSpread", "dreamInterpretation"],
-  health: ["singleCard", "mindBodySpirit", "problemSolution", "horseshoeSpread", "brokenHeart"],
-  custom: allSpreads.map(s => s.name),
-};
-
-export default function SpreadSelect({ category, onSelect, onBack, translations }: { category: string; onSelect: (spread: SpreadType) => void; onBack?: () => void; translations: any }) {
+export default function SpreadSelect({ category, onSelect, onBack }: { category: string; onSelect: (spread: SpreadType) => void; onBack?: () => void; }) {
   const [selectedSpread, setSelectedSpread] = useState<SpreadType | null>(null);
-  const spreads = allSpreads.filter(s => categorySpreadMap[category]?.includes(s.name));
+  const t = useTranslations('common');
+  const params = useParams();
+  const locale = params.locale as string;
+  const spreads = allSpreads.filter(s => spreadCategoryMap[category]?.includes(s.name));
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[40vh] animate-fade-in w-full">
-      <h2 className="text-2xl font-bold mb-8 text-accent-gold drop-shadow-lg" style={{ fontFamily: 'Cinzel Decorative, serif' }}>{translations.reading_choose_spread}</h2>
-      <div className="mb-4 w-full px-8 mx-auto">
-        <div className="bg-gradient-to-r from-[var(--secondary-color)] to-[var(--accent-color)] text-white text-sm md:text-base rounded-lg px-4 py-3 shadow-md text-center animate-fade-in">
-          {translations.reading_spread_info}
-        </div>
+    <div className="flex flex-col items-center w-full min-h-screen bg-[var(--bg-color)]">
+      <div className="sticky top-0 z-40 w-full">
+        <StepperBarClientWrapper categorySelected={!!category} category={category} locale={locale} spread={""} />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-2xl mx-auto pb-16">
-        {spreads.length === 0 ? (
-          Array.from({ length: 4 }).map((_, i) => (
-            <Skeleton key={i} className="min-h-[220px] h-full w-full rounded-2xl bg-gradient-to-br from-[#180026] via-[#3B006A] to-[#7A2062]" />
-          ))
-        ) : (
-          spreads.map(spread => (
-            <div
-              key={spread.name}
-              className="relative group rounded-2xl overflow-hidden shadow-lg border border-[var(--accent-color)] transition-all duration-300 bg-gradient-to-br from-[#180026] via-[#3B006A] to-[#7A2062] hover:border-accent-gold hover:shadow-2xl hover:scale-105"
-              style={{ minHeight: 220 }}
-            >
-              {/* Görsel */}
-              <div className="w-full aspect-[19/9] flex items-center justify-center bg-[#1a0026]">
-                <img
-                  src={`/images/spreads/${spread.name}.png`}
-                  alt={translations[`spread_${spread.name}_title`]}
-                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-accent-gold group-hover:shadow-gold transition-all duration-300 z-10" />
-              </div>
-              {/* Başlık ve açıklama */}
-              <div className="relative z-10 flex flex-col items-center justify-start p-0 pt-2 bg-transparent w-full">
-                <div className="flex items-center justify-center w-full gap-2 mb-0.5">
-                  <span className="text-base font-bold text-accent-gold line-clamp-1 text-center drop-shadow-lg">{translations[`spread_${spread.name}_title`]}</span>
-                </div>
-                <span className="text-xs text-gray-300 mb-1 line-clamp-2 text-center">{translations[`spread_${spread.name}_desc`]}</span>
-              </div>
-              {/* Kartı seçmek için tıklama alanı */}
-              <button
-                className="absolute inset-0 z-10 focus:outline-none"
-                style={{ background: "transparent" }}
-                onClick={() => onSelect(spread)}
-                aria-label={translations.reading_choose_spread + ' ' + translations[`spread_${spread.name}_title`]}
-                tabIndex={-1}
-              />
+      <div className="flex-1 w-full flex flex-col justify-center px-0">
+        <div className="flex flex-col items-center mt-8 w-full">
+          <h2 className="text-2xl font-bold mb-8 text-accent-gold drop-shadow-lg">{t('reading_choose_spread')}</h2>
+          <div className="mb-4 w-full px-8 mx-auto">
+            <div className="bg-gradient-to-r from-[var(--secondary-color)] to-[var(--accent-color)] text-white text-sm md:text-base rounded-lg px-4 py-3 shadow-md text-center animate-fade-in">
+              {t('reading_spread_info')}
             </div>
-          ))
-        )}
+          </div>
+          <div className="w-full overflow-x-auto pb-2">
+            <div className="flex gap-6 sm:gap-8 snap-x snap-mandatory w-max px-2 sm:px-6 md:px-8">
+              {spreads.length === 0 ? (
+                Array.from({ length: 4 }).map((_, i) => (
+                  <Skeleton key={i} className="min-h-[220px] h-full w-[260px] rounded-2xl bg-gradient-to-br from-[#180026] via-[#3B006A] to-[#7A2062]" />
+                ))
+              ) : (
+                spreads.map((spread, i) => (
+                  <button
+                    key={spread.name}
+                    onClick={() => onSelect(spread)}
+                    className="flex flex-col items-center rounded-2xl overflow-hidden shadow-lg border border-[var(--accent-color)] group focus:outline-none p-0 bg-gradient-to-br from-[#180026] via-[#3B006A] to-[#7A2062] min-h-[220px] h-full w-[260px] snap-center relative transition-all duration-300 hover:border-accent-gold hover:shadow-2xl"
+                    style={{ fontFamily: 'Cabin, Cinzel Decorative, sans-serif' }}
+                  >
+                    <div className="w-full aspect-[16/7] min-h-[180px] relative bg-[#1a0026]">
+                      <img
+                        src={`/images/spreads/${spread.name}.png`}
+                        alt={t(`spread_${spread.name}_title`)}
+                        className="object-contain w-full h-full transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-accent-gold group-hover:shadow-gold transition-all duration-300 z-10" />
+                    </div>
+                    <div className="w-full flex flex-col items-start px-4 py-3">
+                      <h2 className="text-xl xl:text-2xl font-bold text-accent-gold mb-1" style={{ fontFamily: 'Cinzel Decorative, serif' }}>{t(`spread_${spread.name}_title`)}</h2>
+                      <span className="text-sm xl:text-base text-gray-300 text-left leading-snug" style={{ fontFamily: 'Cabin, sans-serif' }}>{t(`spread_${spread.name}_desc`)}</span>
+                    </div>
+                  </button>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
       </div>
       {/* Modal veya geniş detay paneli */}
       {selectedSpread && (
@@ -184,33 +180,33 @@ export default function SpreadSelect({ category, onSelect, onBack, translations 
             <button
               className="absolute top-4 right-4 text-accent-gold hover:text-white bg-[#1a0026] border-2 border-accent-gold rounded-full w-10 h-10 flex items-center justify-center text-2xl font-bold focus:outline-none transition-colors duration-200"
               onClick={() => setSelectedSpread(null)}
-              aria-label={translations.reading_spread_modal_close}
+              aria-label={t('reading_spread_modal_close')}
             >
               &times;
             </button>
             <img
               src={`/images/spreads/${selectedSpread.name}.png`}
-              alt={translations[`spread_${selectedSpread.name}_title`]}
+              alt={t(`spread_${selectedSpread.name}_title`)}
               className="w-full max-w-[420px] aspect-[19/9] object-contain mb-4 rounded-xl shadow-lg border border-accent-gold bg-[#1a0026]"
             />
-            <h3 className="text-2xl font-bold mb-2 text-accent-gold text-center drop-shadow-lg">{translations[`spread_${selectedSpread.name}_title`]}</h3>
-            <p className="text-base text-gray-300 mb-4 text-center">{translations[`spread_${selectedSpread.name}_desc`]}</p>
+            <h3 className="text-2xl font-bold mb-2 text-accent-gold text-center drop-shadow-lg">{t(`spread_${selectedSpread.name}_title`)}</h3>
+            <p className="text-base text-gray-300 mb-4 text-center">{t(`spread_${selectedSpread.name}_desc`)}</p>
             <div className="w-full mb-2">
-              <span className="block text-sm font-semibold text-accent-gold mb-1">{translations.reading_spread_modal_card_positions}</span>
+              <span className="block text-sm font-semibold text-accent-gold mb-1">{t('reading_spread_modal_card_positions')}</span>
               <ul className="list-disc list-inside text-sm text-gray-400">
-                {(translations[`spread_${selectedSpread.name}_positions`] || []).map((pos: string, idx: number) => (
+                {(t.raw(`spread_${selectedSpread.name}_positions`) || []).map((pos: string, idx: number) => (
                   <li key={idx}>{pos}</li>
                 ))}
               </ul>
             </div>
             <div className="w-full mt-2">
-              <span className="block text-sm text-gray-400 text-center">{translations[`spread_${selectedSpread.name}_longDesc`]}</span>
+              <span className="block text-sm text-gray-400 text-center">{t(`spread_${selectedSpread.name}_longDesc`)}</span>
             </div>
           </div>
         </div>
       )}
       {onBack && (
-        <button onClick={onBack} className="mt-6 text-accent-gold underline">{translations.reading_back_button}</button>
+        <button onClick={onBack} className="mt-6 text-accent-gold underline">{t('reading_back_button')}</button>
       )}
     </div>
   );

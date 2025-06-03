@@ -22,12 +22,11 @@
   "homepage_intro_title": "Your Tarot Journey Starts Here",
   "homepage_intro_desc": "Astral Tarot offers a modern, interactive tarot experience. Choose your focus, select a spread, and reveal the wisdom of the cards—all personalized for you.",
   "homepage_howitworks_title": "How It Works",
-  "homepage_howitworks_steps": [
-    "1. Choose a category: Love, Career, Spiritual, Health, or Custom.",
-    "2. Select a tarot spread that fits your question or curiosity.",
-    "3. Pick your cards and receive a detailed, personalized reading.",
-    "4. Reflect, save, or share your insights."
-  ],
+  "homepage_howitworks_step_1": "1. Choose a category: Love, Career, Spiritual, Health, or Custom.",
+  "homepage_howitworks_step_2": "2. Select a tarot spread that fits your question or curiosity.",
+  "homepage_howitworks_step_3": "3. Pick your cards and receive a detailed, personalized reading.",
+  "homepage_howitworks_step_4": "4. Reflect, save, or share your insights.",
+  "homepage_howitworks_desc": "Follow the steps to your tarot reading: choose a category, select a spread, pick your cards, and discover your cosmic guidance.",
   "homepage_spreads_title": "Popular Spreads",
   "homepage_spreads_desc": "Explore a variety of tarot spreads for every question and intention. Each spread offers a unique perspective and depth.",
   "spread_singleCard_title": "Single Card",
@@ -88,7 +87,8 @@
   "reading_spread_info_modal": "See the card positions and spread details here.",
   "reading_choose_cards": "Select your cards",
   "reading_cards_info": "Click on the cards to select them. When ready, unveil your reading!",
-  "reading_unveil_button": "Unveil The Stars",
+  "reading_unveil_button": "Illuminate the Cosmic Cards",
+  "reading_unveil_button_cosmic": "Illuminate the Cosmic Cards",
   "reading_back_button": "Back",
   "reading_spread_modal_card_positions": "Card Positions:",
   "reading_spread_modal_dynamic": "Dynamic (user chooses cards freely)",
@@ -216,5 +216,8 @@
   "spread_yearlySpread_meaning_9": "September's theme or focus.",
   "spread_yearlySpread_meaning_10": "October's theme or focus.",
   "spread_yearlySpread_meaning_11": "November's theme or focus.",
-  "spread_yearlySpread_meaning_12": "December's theme or focus."
+  "spread_yearlySpread_meaning_12": "December's theme or focus.",
+  "features_desc": "Discover the unique features that make Astral Tarot your guide to the cosmos.",
+  "reading_step_result": "Result",
+  "reading_step_desc_result": "See your personalized tarot reading result and interpretation."
 } 

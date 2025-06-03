@@ -3,6 +3,14 @@
 import React from "react";
 import ReadingStepper from "../../../components/reading/ReadingStepper";
 
+// Define Step type for steps prop
+interface Step {
+  label: string;
+  desc: string;
+  icon: string;
+  keyword: string;
+}
+
 export default function ReadingPage({
   locale,
   translations,
@@ -10,18 +18,18 @@ export default function ReadingPage({
   steps,
 }: {
   locale: string;
-  translations: any;
+  translations: Record<string, string>;
   error: string | null;
-  steps: any[];
+  steps: Step[];
 }) {
   return (
-    <div className="min-h-screen bg-[var(--bg-color)] flex flex-col">
+    <>
       {error && (
         <div className="text-center text-red-600 font-bold mb-4">{error}</div>
       )}
-      <main className="pt-[var(--navbar-height-mobile)] md:pt-[var(--navbar-height)] mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1">
+      <main className="mx-auto w-full flex-1">
         <ReadingStepper steps={steps} translations={translations} />
       </main>
-    </div>
+    </>
   );
 }

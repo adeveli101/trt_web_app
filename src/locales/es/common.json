@@ -22,12 +22,11 @@
   "homepage_intro_title": "Il tuo viaggio nei Tarocchi inizia qui",
   "homepage_intro_desc": "Tarot Astrale offre un'esperienza di tarocchi moderna e interattiva. Scegli il tuo focus, seleziona una stesura e rivela la saggezza delle carte — tutto personalizzato per te.",
   "homepage_howitworks_title": "Come Funziona",
-  "homepage_howitworks_steps": [
-    "1. Scegli una categoria: Amore, Carriera, Spirituale, Salute o Personalizzata.",
-    "2. Seleziona una stesura dei tarocchi che si adatti alla tua domanda o curiosità.",
-    "3. Scegli le tue carte e ricevi una lettura dettagliata e personalizzata.",
-    "4. Rifletti, salva o condividi le tue intuizioni."
-  ],
+  "homepage_howitworks_step_1": "1. Scegli una categoria: Amore, Carriera, Spirituale, Salute o Personalizzata.",
+  "homepage_howitworks_step_2": "2. Seleziona una stesura dei tarocchi che si adatti alla tua domanda o curiosità.",
+  "homepage_howitworks_step_3": "3. Scegli le tue carte e ricevi una lettura dettagliata e personalizzata.",
+  "homepage_howitworks_step_4": "4. Reflexiona, guarda o comparte tus ideas.",
+  "homepage_howitworks_desc": "Sigue los pasos para tu lectura de tarot: elige una categoría, selecciona una tirada, elige tus cartas y descubre tu guía cósmica.",
   "homepage_spreads_title": "Stesure Popolari",
   "homepage_spreads_desc": "Esplora una varietà di stesure dei tarocchi per ogni domanda e intenzione. Ogni stesura offre una prospettiva e una profondità uniche.",
   "spread_singleCard_title": "Carta Singola",
@@ -88,7 +87,8 @@
   "reading_spread_info_modal": "Vedi qui le posizioni delle carte e i dettagli della stesura.",
   "reading_choose_cards": "Seleziona le tue carte",
   "reading_cards_info": "Clicca sulle carte per selezionarle. Quando sei pronto, svela la tua lettura!",
-  "reading_unveil_button": "Svela le Stelle",
+  "reading_unveil_button": "Iluminar las Cartas Cósmicas",
+  "reading_unveil_button_cosmic": "Iluminar las Cartas Cósmicas",
   "reading_back_button": "Indietro",
   "reading_spread_modal_card_positions": "Posizioni delle carte:",
   "reading_spread_modal_dynamic": "Dinamico (l'utente sceglie le carte liberamente)",
@@ -226,5 +226,8 @@
   "spread_yearlySpread_meaning_9": "Tema o focus di Settembre.",
   "spread_yearlySpread_meaning_10": "Tema o focus di Ottobre.",
   "spread_yearlySpread_meaning_11": "Tema o focus di Novembre.",
-  "spread_yearlySpread_meaning_12": "Tema o focus di Dicembre."
+  "spread_yearlySpread_meaning_12": "Tema o focus di Dicembre.",
+  "features_desc": "Descubre las características únicas que hacen de Astral Tarot tu guía hacia el cosmos.",
+  "reading_step_result": "Resultado",
+  "reading_step_desc_result": "Vea el resultado e interpretación personalizados de su lectura de tarot."
 }

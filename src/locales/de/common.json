@@ -22,12 +22,11 @@
   "homepage_intro_title": "Deine Tarot-Reise beginnt hier",
   "homepage_intro_desc": "Astral Tarot bietet ein modernes, interaktives Tarot-Erlebnis. Wähle deinen Fokus, wähle ein Legesystem und enthülle die Weisheit der Karten – alles persönlich für dich zugeschnitten.",
   "homepage_howitworks_title": "So funktioniert's",
-  "homepage_howitworks_steps": [
-    "1. Wähle eine Kategorie: Liebe, Karriere, Spiritualität, Gesundheit oder Benutzerdefiniert.",
-    "2. Wähle ein Tarot-Legesystem, das zu deiner Frage oder Neugier passt.",
-    "3. Wähle deine Karten und erhalte eine detaillierte, personalisierte Legung.",
-    "4. Reflektiere, speichere oder teile deine Erkenntnisse."
-  ],
+  "homepage_howitworks_step_1": "1. Wähle eine Kategorie: Liebe, Karriere, Spiritualität, Gesundheit oder Benutzerdefiniert.",
+  "homepage_howitworks_step_2": "2. Wähle ein Tarot-Legesystem, das zu deiner Frage oder Neugier passt.",
+  "homepage_howitworks_step_3": "3. Wähle deine Karten und erhalte eine detaillierte, personalisierte Legung.",
+  "homepage_howitworks_step_4": "4. Reflektiere, speichere oder teile deine Erkenntnisse.",
+  "homepage_howitworks_desc": "Folge den Schritten zu deiner Tarot-Lesung: Wähle eine Kategorie, ein Legesystem, deine Karten und entdecke deine kosmische Führung.",
   "homepage_spreads_title": "Beliebte Legesysteme",
   "homepage_spreads_desc": "Entdecke eine Vielzahl von Tarot-Legesystemen für jede Frage und Absicht. Jedes Legesystem bietet eine einzigartige Perspektive und Tiefe.",
   "spread_singleCard_title": "Einzelne Karte",
@@ -88,7 +87,8 @@
   "reading_spread_info_modal": "Hier siehst du die Kartenpositionen und Legesystemdetails.",
   "reading_choose_cards": "Wähle deine Karten aus",
   "reading_cards_info": "Klicke auf die Karten, um sie auszuwählen. Wenn du bereit bist, enthülle deine Legung!",
-  "reading_unveil_button": "Die Sterne enthüllen",
+  "reading_unveil_button": "Die Kosmischen Karten erleuchten",
+  "reading_unveil_button_cosmic": "Die Kosmischen Karten erleuchten",
   "reading_back_button": "Zurück",
   "reading_spread_modal_card_positions": "Kartenpositionen:",
   "reading_spread_modal_dynamic": "Dynamisch (Benutzer wählt Karten frei)",
@@ -226,5 +226,8 @@
   "spread_yearlySpread_meaning_9": "September-Thema oder -Fokus.",
   "spread_yearlySpread_meaning_10": "Oktober-Thema oder -Fokus.",
   "spread_yearlySpread_meaning_11": "November-Thema oder -Fokus.",
-  "spread_yearlySpread_meaning_12": "Dezember-Thema oder -Fokus."
+  "spread_yearlySpread_meaning_12": "Dezember-Thema oder -Fokus.",
+  "features_desc": "Entdecke die einzigartigen Funktionen, die Astral Tarot zu deinem Wegweiser im Kosmos machen.",
+  "reading_step_result": "Ergebnis",
+  "reading_step_desc_result": "Sieh dein personalisiertes Tarot-Lesungsergebnis und die Interpretation."
 }

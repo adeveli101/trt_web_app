@@ -34,8 +34,8 @@ export function getTarotCardByName(name: string): TarotCard | undefined {
 // Görsel yolu
 export function getTarotCardImage(card: TarotCard): string {
   return card.img
-    ? `/src/lib/tarot_card_images/${card.img}`
-    : `/src/lib/tarot_card_images/${card.name.replace(/ /g, "_").toLowerCase()}.jpg`;
+    ? `/images/tarot_card_images/${card.img}`
+    : `/images/tarot_card_images/${card.name.replace(/ /g, "_").toLowerCase()}.jpg`;
 }
 
 // Spread mapping (güncellenmiş)

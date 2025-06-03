@@ -5,7 +5,6 @@ import { TarotCard } from "../../lib/tarotTypes";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
-import { useTranslation } from 'react-i18next';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import TarotCardSingle from "./TarotCardSingle"; // Güncellenmiş TarotCardSingle bileşeni
 import { Skeleton } from "@/components/ui/skeleton";
@@ -48,10 +47,9 @@ function Tabs({ tabs, active, onTab }: { tabs: string[]; active: string; onTab: 
   );
 }
 
-export default function CardSelectionArea({ selectedCards, onRemove, spreadCardCount, label, positionDescription, cardSize }: { selectedCards: TarotCard[], onRemove: (card: TarotCard) => void, spreadCardCount: number, label?: string, positionDescription?: string, cardSize?: 'sm' | 'lg' }) {
-  const { t } = useTranslation('common');
+export default function CardSelectionArea({ selectedCards, onRemove, spreadCardCount, label, positionDescription, cardSize, translations }: { selectedCards: TarotCard[], onRemove: (card: TarotCard) => void, spreadCardCount: number, label?: string, positionDescription?: string, cardSize?: 'sm' | 'lg', translations: any }) {
   const [modalCard, setModalCard] = useState<TarotCard | null>(null);
-  const [activeTab, setActiveTab] = useState(t('reading_card_keywords'));
+  const [activeTab, setActiveTab] = useState(translations['reading_card_keywords']);
 
   // Kart arka yüzü gösterilecek mi?
   if (selectedCards.length === 0 && spreadCardCount > 0) {
@@ -99,37 +97,37 @@ export default function CardSelectionArea({ selectedCards, onRemove, spreadCardC
                     <div className="text-sm text-yellow-200 mb-2">{card.arcana} {card.suit ? `- ${card.suit}` : ''}</div>
                     {/* Tabs */}
                     <Tabs
-                      tabs={[t('reading_card_keywords'), t('reading_card_fortune'), t('reading_card_meanings'), t('reading_card_details')]}
+                      tabs={[translations['reading_card_keywords'], translations['reading_card_fortune'], translations['reading_card_meanings'], translations['reading_card_details']]}
                       active={activeTab}
                       onTab={setActiveTab}
                     />
                     <div className="text-left">
-                      {activeTab === t('reading_card_keywords') && card.keywords && (
+                      {activeTab === translations['reading_card_keywords'] && card.keywords && (
                         <div className="mb-2">
-                          <span className="font-semibold text-yellow-300">{t('reading_card_keywords')}: </span>
+                          <span className="font-semibold text-yellow-300">{translations['reading_card_keywords']}: </span>
                           <span className="text-white">{card.keywords.join(", ")}</span>
                         </div>
                       )}
-                      {activeTab === t('reading_card_fortune') && card.fortune_telling && (
+                      {activeTab === translations['reading_card_fortune'] && card.fortune_telling && (
                         <div className="mb-2">
-                          <span className="font-semibold text-pink-300">{t('reading_card_fortune')}:</span>
+                          <span className="font-semibold text-pink-300">{translations['reading_card_fortune']}:</span>
                           <ul className="list-disc list-inside text-white text-sm mt-1">
                             {card.fortune_telling.map((ft: string, i: number) => <li key={i}>{ft}</li>)}
                           </ul>
                         </div>
                       )}
-                      {activeTab === t('reading_card_meanings') && card.meanings && (
+                      {activeTab === translations['reading_card_meanings'] && card.meanings && (
                         <div className="mb-2">
-                          <span className="font-semibold text-yellow-200">{t('reading_card_meanings')}:</span>
+                          <span className="font-semibold text-yellow-200">{translations['reading_card_meanings']}:</span>
                           <div className="flex flex-row gap-4 mt-1">
                             <div>
-                              <span className="font-semibold text-green-300 text-xs">{t('reading_card_light')}</span>
+                              <span className="font-semibold text-green-300 text-xs">{translations['reading_card_light']}</span>
                               <ul className="list-disc list-inside text-white text-xs mt-1">
                                 {card.meanings.light.map((m: string, i: number) => <li key={i}>{m}</li>)}
                               </ul>
                             </div>
                             <div>
-                              <span className="font-semibold text-red-300 text-xs">{t('reading_card_shadow')}</span>
+                              <span className="font-semibold text-red-300 text-xs">{translations['reading_card_shadow']}</span>
                               <ul className="list-disc list-inside text-white text-xs mt-1">
                                 {card.meanings.shadow.map((m: string, i: number) => <li key={i}>{m}</li>)}
                               </ul>
@@ -137,26 +135,26 @@ export default function CardSelectionArea({ selectedCards, onRemove, spreadCardC
                           </div>
                         </div>
                       )}
-                      {activeTab === t('reading_card_details') && (
+                      {activeTab === translations['reading_card_details'] && (
                         <div className="space-y-2">
                           {card.Archetype && (
-                            <div className="text-xs text-yellow-200"><span className="font-semibold text-yellow-400">{t('reading_card_archetype')}:</span> {card.Archetype}</div>
+                            <div className="text-xs text-yellow-200"><span className="font-semibold text-yellow-400">{translations['reading_card_archetype']}:</span> {card.Archetype}</div>
                           )}
                           {card["Hebrew Alphabet"] && (
-                            <div className="text-xs text-blue-200"><span className="font-semibold text-blue-400">{t('reading_card_hebrew')}:</span> {card["Hebrew Alphabet"]}</div>
+                            <div className="text-xs text-blue-200"><span className="font-semibold text-blue-400">{translations['reading_card_hebrew']}:</span> {card["Hebrew Alphabet"]}</div>
                           )}
                           {card.Numerology && (
-                            <div className="text-xs text-pink-200"><span className="font-semibold text-pink-400">{t('reading_card_numerology')}:</span> {card.Numerology}</div>
+                            <div className="text-xs text-pink-200"><span className="font-semibold text-pink-400">{translations['reading_card_numerology']}:</span> {card.Numerology}</div>
                           )}
                           {card.Elemental && (
-                            <div className="text-xs text-green-200"><span className="font-semibold text-green-400">{t('reading_card_element')}:</span> {card.Elemental}</div>
+                            <div className="text-xs text-green-200"><span className="font-semibold text-green-400">{translations['reading_card_element']}:</span> {card.Elemental}</div>
                           )}
                           {card["Mythical/Spiritual"] && (
-                            <div className="text-xs text-yellow-200"><span className="font-semibold text-yellow-400">{t('reading_card_myth')}:</span> {card["Mythical/Spiritual"]}</div>
+                            <div className="text-xs text-yellow-200"><span className="font-semibold text-yellow-400">{translations['reading_card_myth']}:</span> {card["Mythical/Spiritual"]}</div>
                           )}
                           {card["Questions to Ask"] && (
                             <div className="mb-2 text-left">
-                              <span className="font-semibold text-indigo-200">{t('reading_card_questions')}:</span>
+                              <span className="font-semibold text-indigo-200">{translations['reading_card_questions']}:</span>
                               <ul className="list-disc list-inside text-white text-xs mt-1">
                                 {card["Questions to Ask"].map((q: string, i: number) => <li key={i}>{q}</li>)}
                               </ul>
@@ -172,7 +170,7 @@ export default function CardSelectionArea({ selectedCards, onRemove, spreadCardC
           </motion.div>
         ))}
       </AnimatePresence>
-      {selectedCards.length === 0 && <span className="text-gray-400 italic">{t('reading_card_no_selected')}</span>}
+      {selectedCards.length === 0 && <span className="text-gray-400 italic">{translations['reading_card_no_selected']}</span>}
     </div>
   );
 }

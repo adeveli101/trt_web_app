@@ -1,33 +1,31 @@
 import React from "react";
 import StartJourneyButton from "../ui/StartJourneyButton";
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { motion } from "framer-motion";
+import SectionHeading from "../ui/SectionHeading";
 
-export default function AboutSection({ visible, sectionClass }: { visible: boolean, sectionClass: string }) {
-  const { t } = useTranslation('common');
-  const params = useParams();
-  const locale = params?.locale || 'en';
+export default function AboutSection({ sectionClass }: { sectionClass: string }) {
+  const t = useTranslations('common');
   return (
     <section id="about" className={sectionClass}>
       <div className="max-w-3xl mx-auto">
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, type: "spring" }}
-          className="text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6 relative inline-block drop-shadow-lg transition duration-700 animate-fade-in"
-          style={{ fontFamily: 'Cinzel Decorative, Lora, serif' }}
         >
-          {t('about_title')}
-        </motion.h2>
-        <div className="h-1 w-20 bg-gradient-to-r from-[var(--secondary-color)] to-[var(--accent-color)] mx-auto mt-2 mb-8 rounded animate-fade-in"></div>
+          <SectionHeading>
+            {t('about_title')}
+          </SectionHeading>
+        </motion.div>
+        <div className="h-1 w-20 bg-gradient-to-r from-black via-[#1a103b] to-[#3a0a1a] mx-auto mt-2 mb-8 rounded animate-fade-in"></div>
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.7, type: "spring" }}
-          className="text-lg text-[var(--text-muted-color)] mb-8"
+          className="text-lg text-[var(--text-muted-color)] mb-8 transition duration-200 hover:scale-105"
         >
           {t('about_desc')}
         </motion.p>
@@ -37,7 +35,7 @@ export default function AboutSection({ visible, sectionClass }: { visible: boole
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.7, type: "spring" }}
         >
-          <StartJourneyButton href={`/${locale}/reading`}>
+          <StartJourneyButton href={`/reading`}>
             {t('start_journey')}
           </StartJourneyButton>
         </motion.div>

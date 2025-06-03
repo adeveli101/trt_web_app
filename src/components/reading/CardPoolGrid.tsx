@@ -2,9 +2,8 @@
 import React from "react";
 import { TarotCard } from "../../lib/tarotTypes";
 import { motion } from "framer-motion";
-import { useTranslation } from 'react-i18next';
-import TarotCardSingle from "./TarotCardSingle";
 import { Skeleton } from "@/components/ui/skeleton";
+import TarotCardSingle from "./TarotCardSingle";
 
 export default function CardPoolGrid({ tarotCards, selectedCards, onSelect, maxSelectable, translations, loading = false } : {
   tarotCards: TarotCard[];

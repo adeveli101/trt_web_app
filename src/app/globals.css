@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -76,14 +77,14 @@
   --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
   --sidebar-border: oklch(0.928 0.006 264.531);
   --sidebar-ring: oklch(0.707 0.022 261.325);
-  --primary-color: #2c003e;
-  --secondary-color: #7F00FF;
-  --accent-color: #FF00FF;
-  --highlight-color: #E64980;
-  --text-color: #f0e6ff;
-  --text-muted-color: #a093b0;
-  --bg-color: #10001c;
-  --card-bg-color: #1e0a2f;
+  --primary-color: #1a103b; /* Mor */
+  --secondary-color: #0a0a23; /* Lacivert */
+  --accent-color: #3a0a1a; /* Koyu kırmızı */
+  --highlight-color: #000; /* Siyah */
+  --text-color: #e0e6ff;
+  --text-muted-color: #7a6e99;
+  --bg-color: #09071a;
+  --card-bg-color: #18102a;
   --navbar-height: 70px;
   --navbar-height-mobile: 60px;
 }
@@ -173,4 +174,27 @@ html {
 .border-animated-darkred {
   border-image: linear-gradient(120deg, #2c0018, #6a003a, #000) 1;
   animation: borderDarkRed 6s ease-in-out infinite;
+}
+.loader {
+  border-top-color: #3498db;
+  /* Mavi */
+  border-color: rgba(229, 231, 235, 0.2);
+  /* Gri */
+  border-radius: 50%;
+  /* Daire olması için */
+  width: 12px;
+  /* Genişlik */
+  height: 12px;
+  /* Yükseklik */
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

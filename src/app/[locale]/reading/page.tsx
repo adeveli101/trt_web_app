@@ -1,54 +1,61 @@
 // app/reading/page.tsx
 import ReadingPage from './ReadingPage';
+import spreadsData from '@/lib/data/spreads.json';
+import categoriesData from '@/lib/data/categories.json';
+import { promises as fs } from 'fs';
+import path from 'path';
 
-const LOCALE_MAP = {
-  en: () => import('@/locales/en/common.json'),
-  tr: () => import('@/locales/tr/common.json'),
-  de: () => import('@/locales/de/common.json'),
-  es: () => import('@/locales/es/common.json'),
-  fr: () => import('@/locales/fr/common.json'),
-  it: () => import('@/locales/it/common.json'),
-};
+async function loadTranslations(locale: string) {
+  const filePath = path.join(process.cwd(), 'src', 'locales', locale, 'common.json');
+  const file = await fs.readFile(filePath, 'utf8');
+  return JSON.parse(file);
+}
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const awaitedParams = await params;
-  const { locale } = awaitedParams;
-  let translations: any = {};
-  try {
-    translations = (await (LOCALE_MAP[locale] ? LOCALE_MAP[locale]() : LOCALE_MAP['en']())).default;
-  } catch {
-    try {
-      translations = (await LOCALE_MAP['en']()).default;
-    } catch {
-      // fallback boş bırakılır
-    }
-  }
+  // Sadece fallback başlık ve açıklama döndür
   return {
-    title: translations?.meta_title || 'Reading | Astral Tarot',
-    description: translations?.meta_description || 'Tarot reading page.'
+    title: 'Reading | Astral Tarot',
+    description: 'Tarot reading page.'
   };
 }
 
 export default async function Page({ params }: { params: { locale: string } }) {
-  const awaitedParams = await params;
-  const { locale } = awaitedParams;
-  let translations: any = {};
-  let error: string | null = null;
-  try {
-    translations = (await (LOCALE_MAP[locale] ? LOCALE_MAP[locale]() : LOCALE_MAP['en']())).default;
-  } catch {
-    try {
-      translations = (await LOCALE_MAP['en']()).default;
-      error = `Translation for locale '${locale}' not found. Showing English.`;
-    } catch {
-      error = 'Translation files could not be loaded.';
-    }
-  }
-  // StepperBar için çeviri değerlerini hazırla
+  const { locale } = await params;
+  const translations = await loadTranslations(locale);
   const steps = [
-    { label: translations.reading_step_category, icon: "/images/steps/category_icon.png", desc: translations.reading_step_desc_category, keyword: translations.category_general_label },
-    { label: translations.reading_step_spread, icon: "/images/steps/spread_icon.png", desc: translations.reading_step_desc_spread, keyword: translations.spread_singleCard_title },
-    { label: translations.reading_step_cards, icon: "/images/steps/cards_icon.png", desc: translations.reading_step_desc_cards, keyword: translations.reading_choose_cards },
+    {
+      label: translations.reading_step_category,
+      desc: translations.reading_step_desc_category,
+      icon: "/images/steps/category_icon.png",
+      keyword: translations.category_general_label
+    },
+    {
+      label: translations.reading_step_spread,
+      desc: translations.reading_step_desc_spread,
+      icon: "/images/steps/spread_icon.png",
+      keyword: translations.spread_singleCard_title
+    },
+    {
+      label: translations.reading_step_cards,
+      desc: translations.reading_step_desc_cards,
+      icon: "/images/steps/cards_icon.png",
+      keyword: translations.reading_choose_cards
+    },
+    {
+      label: translations.reading_step_result,
+      desc: translations.reading_step_desc_result,
+      icon: "/images/steps/result_icon.png",
+      keyword: translations.reading_result_keyword
+    }
   ];
-  return <ReadingPage locale={locale} translations={translations} error={error} steps={steps} />;
+  return (
+    <div className="w-full flex-1 flex flex-col justify-center px-0">
+      <ReadingPage
+        locale={locale}
+        translations={translations}
+        error={null}
+        steps={steps}
+      />
+    </div>
+  );
 }

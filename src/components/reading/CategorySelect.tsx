@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useTranslation } from 'react-i18next';
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslations } from "next-intl";
 
 interface Category {
   key: string;
@@ -14,8 +14,8 @@ interface Category {
   isNew?: boolean;
 }
 
-export default function CategorySelect({ onSelect, onBack, translations }: { onSelect: (category: string) => void, onBack?: () => void, translations: any }) {
-  const { t } = useTranslation('common');
+export default function CategorySelect({ onSelect, onBack }: { onSelect: (category: string) => void, onBack?: () => void }) {
+  const t = useTranslations('common');
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -29,10 +29,10 @@ export default function CategorySelect({ onSelect, onBack, translations }: { onS
 
   return (
     <div className="flex flex-col items-center justify-center w-full animate-fade-in">
-      <h2 className="text-2xl font-bold mb-8 text-accent-gold drop-shadow-lg" style={{ fontFamily: 'Cinzel Decorative, serif' }}>{translations.reading_choose_category}</h2>
+      <h2 className="text-2xl font-bold mb-8 text-accent-gold drop-shadow-lg">{t('reading_choose_category')}</h2>
       <div className="mb-4 w-full px-8 mx-auto">
         <div className="bg-gradient-to-r from-[#180026] via-[#3B006A] to-[#7A2062] text-white text-sm md:text-base rounded-lg px-4 py-3 shadow-md text-center animate-fade-in">
-          {translations.reading_category_info}
+          {t('reading_category_info')}
         </div>
       </div>
       <div className="w-full overflow-x-auto pb-2">
@@ -62,15 +62,15 @@ export default function CategorySelect({ onSelect, onBack, translations }: { onS
                 <div className="w-full aspect-[16/7] min-h-[180px] relative bg-[#1a0026]">
                   <img
                     src={cat.image}
-                    alt={translations[`category_${cat.key}_label`] || cat.label}
+                    alt={t(`category_${cat.key}_label`) || cat.label}
                     className="object-contain w-full h-full transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
                   />
                   <div className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-accent-gold group-hover:shadow-gold transition-all duration-300 z-10" />
                 </div>
                 <div className="w-full flex flex-col items-start px-4 py-3">
-                  <h2 className="text-xl xl:text-2xl font-bold text-accent-gold mb-1" style={{ fontFamily: 'Cinzel Decorative, serif' }}>{translations[`category_${cat.key}_label`] || cat.label}</h2>
-                  <span className="text-sm xl:text-base text-gray-300 text-left leading-snug" style={{ fontFamily: 'Cabin, sans-serif' }}>{translations[`reading_category_insight_${cat.key}`] || cat.insight}</span>
+                  <h2 className="text-xl xl:text-2xl font-bold text-accent-gold mb-1" style={{ fontFamily: 'Cinzel Decorative, serif' }}>{t(`category_${cat.key}_label`) || cat.label}</h2>
+                  <span className="text-sm xl:text-base text-gray-300 text-left leading-snug" style={{ fontFamily: 'Cabin, sans-serif' }}>{t(`reading_category_insight_${cat.key}`) || cat.insight}</span>
                 </div>
                 <div className="w-full flex justify-center pb-2">
                   <svg width="90%" height="8" viewBox="0 0 180 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,10 +98,10 @@ export default function CategorySelect({ onSelect, onBack, translations }: { onS
         </div>
       </div>
       <div className="mt-8 text-sm xl:text-base text-muted-foreground w-full px-8 text-center" style={{ fontFamily: 'Cabin, sans-serif' }}>
-        <p>{translations.reading_category_footer}</p>
+        <p>{t('reading_category_footer')}</p>
       </div>
       {onBack && (
-        <button onClick={onBack} className="mt-6 text-accent-gold underline">{translations.reading_back_button}</button>
+        <button onClick={onBack} className="mt-6 text-accent-gold underline">{t('reading_back_button')}</button>
       )}
     </div>
   );

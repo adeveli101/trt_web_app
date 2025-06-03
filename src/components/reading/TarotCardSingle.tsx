@@ -2,6 +2,7 @@
 // components/reading/TarotCardSingle.tsx
 import React from "react";
 import { TarotCard } from "../../lib/tarotTypes";
+import { getTarotCardImage } from "@/lib/tarotLogic";
 import { Card, CardContent } from "@/components/ui/card"; // Shadcn Card bileşeni
 import { AspectRatio } from "@/components/ui/aspect-ratio"; // Shadcn AspectRatio
 import { motion } from "framer-motion"; // Framer Motion import'u
@@ -123,7 +124,7 @@ export default function TarotCardSingle({ card, meaning, meaningTitle, size = 'm
           {/* En Üst Kısım: MeaningTitle */}
           {meaningTitle && (
             <div className="w-full text-center flex-shrink-0 pt-1 pb-0.5 px-1 bg-black/50 rounded-t-[calc(0.75rem-1.5px)]">
-              <span className="block text-[8px] md:text-[10px] font-semibold text-rose-300 tracking-wide drop-shadow-sm line-clamp-1">
+              <span className="block text-[8px] md:text-[10px] font-semibold text-rose-300 tracking-wide drop-shadow-sm line-clamp-1" style={{ fontFamily: 'Cinzel Decorative, serif' }}>
                 {meaningTitle}
               </span>
             </div>
@@ -132,7 +133,7 @@ export default function TarotCardSingle({ card, meaning, meaningTitle, size = 'm
           {/* Anlam (Meaning) metni - Resmin hemen üstünde */}
           {meaning && (
             <div className="w-full text-center flex-shrink-0 py-0.5 px-1 bg-black/50">
-              <span className="block text-[7px] md:text-[9px] text-rose-200 font-medium italic line-clamp-2 min-h-[16px] md:min-h-[20px]">
+              <span className="block text-[7px] md:text-[9px] text-rose-200 font-medium italic line-clamp-2 min-h-[16px] md:min-h-[20px]" style={{ fontFamily: 'Cinzel Decorative, serif' }}>
                 {meaning}
               </span>
             </div>
@@ -141,17 +142,16 @@ export default function TarotCardSingle({ card, meaning, meaningTitle, size = 'm
           {/* Kart Resim Alanı - Dikeyde ortalı ve boşluğu dolduracak */}
           <AspectRatio ratio={3 / 5} className="w-full flex-grow flex items-center justify-center p-0.5">
             <img
-              src={`/images/tarot_card_images/${card.img}`}
+              src={getTarotCardImage(card)}
               alt={card.name}
               className="object-contain rounded-md w-full h-full shadow-lg border border-gray-700 select-none pointer-events-none"
-              draggable={false} // Sürüklenmeyi engelle
-              onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} // Resim yüklenmezse gizle
+              draggable={false}
             />
           </AspectRatio>
 
           {/* Alt Kısım: Kart İsmi - Resmin hemen altında, daha küçük ve tek satır */}
           <div className="w-full text-center flex-shrink-0 pt-0.5 pb-1 px-1 bg-black/50 rounded-b-[calc(0.75rem-1.5px)]">
-            <span className="block text-[9px] md:text-[11px] font-bold text-white tracking-wide line-clamp-1 capitalize"> {/* Font boyutu küçültüldü ve line-clamp-1 ile tek satırda kalması sağlandı */}
+            <span className="block text-[9px] md:text-[11px] font-bold text-white tracking-wide line-clamp-1 capitalize" style={{ fontFamily: 'Cinzel Decorative, serif' }}> {/* Font boyutu küçültüldü ve line-clamp-1 ile tek satırda kalması sağlandı */}
               {card.name}
             </span>
           </div>

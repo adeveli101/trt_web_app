@@ -1,17 +1,47 @@
-export const spreadCategoryMap: Record<string, string> = {
-  singleCard: "general",
-  pastPresentFuture: "general",
-  problemSolution: "career",
-  fiveCardPath: "career",
-  relationshipSpread: "love",
-  celticCross: "general",
-  yearlySpread: "general",
-  mindBodySpirit: "wellness",
-  dreamInterpretation: "dreams",
-  horseshoeSpread: "general",
-  careerPathSpread: "career",
-  fullMoonSpread: "general",
-  categoryReading: "general",
-  astroLogicalCross: "general",
-  brokenHeart: "love"
+export const spreadCategoryMap: Record<string, string[]> = {
+  general: [
+    "singleCard",
+    "pastPresentFuture",
+    "celticCross",
+    "yearlySpread",
+    "horseshoeSpread",
+    "dreamInterpretation",
+    "astroLogicalCross",
+    "categoryReading"
+  ],
+  love: [
+    "singleCard",
+    "relationshipSpread",
+    "pastPresentFuture",
+    "brokenHeart",
+    "astroLogicalCross"
+  ],
+  career: [
+    "singleCard",
+    "careerPathSpread",
+    "fiveCardPath",
+    "problemSolution",
+    "fullMoonSpread"
+  ],
+  spiritual: [
+    "singleCard",
+    "mindBodySpirit",
+    "astroLogicalCross",
+    "fullMoonSpread",
+    "dreamInterpretation"
+  ],
+  health: [
+    "singleCard",
+    "mindBodySpirit",
+    "problemSolution",
+    "horseshoeSpread",
+    "brokenHeart"
+  ],
+  custom: [
+    "singleCard",
+    "categoryReading",
+    "pastPresentFuture",
+    "dreamInterpretation",
+    "celticCross"
+  ]
 }; 

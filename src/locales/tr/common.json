@@ -17,17 +17,17 @@
   "feature_2_desc": "Size özel enerjinize ve yaşam yolculuğunuzun kozmik haritasına göre tasarlanmış okumalar.",
   "feature_3_title": "Kadimlerin Bilgeliği",
   "feature_3_desc": "Zamansız sırları açığa çıkarın ve evrenin rehberlik edici enerjileriyle her zaman, her yerden bağlantı kurun.",
+  "features_desc": "Astral Tarot'u kozmosa açılan rehberiniz yapan benzersiz özellikleri keşfedin.",
   "meta_title": "Astral Tarot - Yıldızları Keşfet",
   "meta_description": "Astral Tarot web uygulamasının açılış sayfası. Yıldızları keşfedin ve kozmik kaderinizi ortaya çıkarın.",
   "homepage_intro_title": "Tarot Yolculuğunuz Burada Başlıyor",
   "homepage_intro_desc": "Astral Tarot, modern, interaktif bir tarot deneyimi sunar. Odağınızı seçin, bir açılım belirleyin ve kartların bilgeliğini ortaya çıkarın—hepsi sizin için kişiselleştirildi.",
   "homepage_howitworks_title": "Nasıl Çalışır",
-  "homepage_howitworks_steps": [
-    "1. Bir kategori seçin: Aşk, Kariyer, Ruhsal, Sağlık veya Özel.",
-    "2. Sorunuza veya merakınıza uygun bir tarot açılımı seçin.",
-    "3. Kartlarınızı seçin ve ayrıntılı, kişiselleştirilmiş bir okuma alın.",
-    "4. İçgörülerinizi düşünün, kaydedin veya paylaşın."
-  ],
+  "homepage_howitworks_step_1": "1. Bir kategori seçin: Aşk, Kariyer, Ruhsal, Sağlık veya Özel.",
+  "homepage_howitworks_step_2": "2. Sorunuza veya merakınıza uygun bir tarot açılımı seçin.",
+  "homepage_howitworks_step_3": "3. Kartlarınızı seçin ve ayrıntılı, kişiselleştirilmiş bir okuma alın.",
+  "homepage_howitworks_step_4": "4. İçgörülerinizi düşünün, kaydedin veya paylaşın.",
+  "homepage_howitworks_desc": "Astral Tarot ile tarot okuma adımlarını kolayca takip edin. Kategorinizi seçin, açılımınızı belirleyin, kartlarınızı seçin ve kozmik rehberliğinizi keşfedin.",
   "homepage_spreads_title": "Popüler Açılımlar",
   "homepage_spreads_desc": "Her soru ve niyet için çeşitli tarot açılımlarını keşfedin. Her açılım benzersiz bir bakış açısı ve derinlik sunar.",
   "spread_singleCard_title": "Tek Kart",
@@ -88,7 +88,8 @@
   "reading_spread_info_modal": "Kart pozisyonlarını ve açılım ayrıntılarını buradan görün.",
   "reading_choose_cards": "Kartlarınızı seçin",
   "reading_cards_info": "Kartları seçmek için üzerine tıklayın. Hazır olduğunuzda okumanızı ortaya çıkarın!",
-  "reading_unveil_button": "Yıldızları Ortaya Çıkar",
+  "reading_unveil_button": "Kozmik Kartları Aydınlat",
+  "reading_unveil_button_cosmic": "Kozmik Kartları Aydınlat",
   "reading_back_button": "Geri",
   "reading_spread_modal_card_positions": "Kart Pozisyonları:",
   "reading_spread_modal_dynamic": "Dinamik (kullanıcı kartları serbestçe seçer)",
@@ -226,5 +227,7 @@
   "spread_yearlySpread_meaning_9": "Eylül ayı teması veya odağı.",
   "spread_yearlySpread_meaning_10": "Ekim ayı teması veya odağı.",
   "spread_yearlySpread_meaning_11": "Kasım ayı teması veya odağı.",
-  "spread_yearlySpread_meaning_12": "Aralık ayı teması veya odağı."
+  "spread_yearlySpread_meaning_12": "Aralık ayı teması veya odağı.",
+  "reading_step_result": "Sonuç",
+  "reading_step_desc_result": "Kişiselleştirilmiş tarot okuma sonucunu ve yorumunu gör."
 }

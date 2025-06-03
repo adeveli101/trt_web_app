@@ -22,12 +22,11 @@
   "homepage_intro_title": "Votre voyage de Tarot commence ici",
   "homepage_intro_desc": "Tarot Astral offre une expérience de tarot moderne et interactive. Choisissez votre objectif, sélectionnez un tirage et révélez la sagesse des cartes — tout est personnalisé pour vous.",
   "homepage_howitworks_title": "Comment ça marche",
-  "homepage_howitworks_steps": [
-    "1. Choisissez une catégorie : Amour, Carrière, Spirituel, Santé ou Personnalisé.",
-    "2. Sélectionnez un tirage de tarot qui correspond à votre question ou curiosité.",
-    "3. Choisissez vos cartes et recevez une lecture détaillée et personnalisée.",
-    "4. Réfléchissez, enregistrez ou partagez vos aperçus."
-  ],
+  "homepage_howitworks_step_1": "1. Choisissez une catégorie : Amour, Carrière, Spirituel, Santé ou Personnalisé.",
+  "homepage_howitworks_step_2": "2. Sélectionnez un tirage de tarot qui correspond à votre question ou curiosité.",
+  "homepage_howitworks_step_3": "3. Choisissez vos cartes et recevez une lecture détaillée et personnalisée.",
+  "homepage_howitworks_step_4": "4. Réfléchissez, enregistrez ou partagez vos aperçus.",
+  "homepage_howitworks_desc": "Suivez les étapes pour votre lecture de tarot : choisissez une catégorie, sélectionnez un tirage, choisissez vos cartes et découvrez votre guidance cosmique.",
   "homepage_spreads_title": "Tirages populaires",
   "homepage_spreads_desc": "Explorez une variété de tirages de tarot pour chaque question et intention. Chaque tirage offre une perspective et une profondeur uniques.",
   "spread_singleCard_title": "Carte Unique",
@@ -88,7 +87,8 @@
   "reading_spread_info_modal": "Voir les positions des cartes et les détails du tirage ici.",
   "reading_choose_cards": "Sélectionnez vos cartes",
   "reading_cards_info": "Cliquez sur les cartes pour les sélectionner. Quand vous êtes prêt, dévoilez votre lecture !",
-  "reading_unveil_button": "Dévoiler les étoiles",
+  "reading_unveil_button": "Illuminer les Cartes Cosmiques",
+  "reading_unveil_button_cosmic": "Illuminer les Cartes Cosmiques",
   "reading_back_button": "Retour",
   "reading_spread_modal_card_positions": "Positions des cartes :",
   "reading_spread_modal_dynamic": "Dynamique (l'utilisateur choisit les cartes librement)",
@@ -226,5 +226,8 @@
   "spread_yearlySpread_meaning_9": "Thème ou objectif de Septembre.",
   "spread_yearlySpread_meaning_10": "Thème ou objectif d'Octobre.",
   "spread_yearlySpread_meaning_11": "Thème ou objectif de Novembre.",
-  "spread_yearlySpread_meaning_12": "Thème ou objectif de Décembre."
+  "spread_yearlySpread_meaning_12": "Thème ou objectif de Décembre.",
+  "features_desc": "Découvrez les fonctionnalités uniques qui font d'Astral Tarot votre guide vers le cosmos.",
+  "reading_step_result": "Résultat",
+  "reading_step_desc_result": "Voir le résultat et l'interprétation personnalisés de votre lecture de tarot."
 }

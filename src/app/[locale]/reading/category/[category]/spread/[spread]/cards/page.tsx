@@ -8,7 +8,7 @@ import frTranslations from '@/locales/fr/common.json';
 import itTranslations from '@/locales/it/common.json';
 import StepperBarClientWrapper from '@/components/reading/StepperBarClientWrapper';
 
-const TRANSLATIONS = {
+const TRANSLATIONS: Record<string, typeof enTranslations> = {
   en: enTranslations,
   tr: trTranslations,
   de: deTranslations,
@@ -36,7 +36,6 @@ export default async function Page({ params }: { params: { locale: string, sprea
     <div className="flex flex-col items-center justify-center min-h-screen py-12 px-4 w-full">
       <div className="w-full max-w-3xl mx-auto">
         <StepperBarClientWrapper
-          step={3}
           steps={steps}
           categorySelected={!!category}
           category={category}
