@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useRouter, useParams } from 'next/navigation';
-import CategorySelect from "./CategorySelect";
+import CategorySelect from "@/components/reading/category/CategorySelect";
 import SpreadSelect from "./SpreadSelect";
 import CardSelect from "./CardSelect";
 import StepperBar from "./StepperBar";
@@ -18,21 +18,26 @@ import RelationshipSpread from './spreads/RelationshipSpread';
 import CelticCrossSpread from './spreads/CelticCrossSpread';
 import YearlySpread from './spreads/YearlySpread';
 import DefaultSpread from './spreads/DefaultSpread';
-import { useTranslation } from 'react-i18next';
-import type { Step } from "./StepperBar";
 import { spreadCategoryMap } from "@/lib/data/spreadCategoryMap";
 import UnveilButton from "./UnveilButton";
+import IntentionStep from "./IntentionStep";
+import CosmicBackground from "@/components/layout/CosmicBackground";
 
 export default function ReadingStepper({ initialCategory, steps, translations, showStepperBar = true }: { initialCategory?: string, steps: any[], translations: any, showStepperBar?: boolean }) {
   const router = useRouter();
   const params = useParams();
-  const { category, spread } = params as { category?: string, spread?: string };
+  const locale = Array.isArray(params.locale) ? params.locale[0] : params.locale ?? "en";
+  const category = Array.isArray(params.category) ? params.category[0] : params.category;
+  const spread = Array.isArray(params.spread) ? params.spread[0] : params.spread;
 
-  let step: 0 | 1 | 2 = 0;
-  if (spread) step = 2;
-  else if (category) step = 1;
+  // Step logic: 0=category, 1=spread, 2=intention, 3=cards, 4=overview
+  let step: 0 | 1 | 2 | 3 | 4 = 0;
+  if (category && !spread) step = 1;
+  if (category && spread && !window?.location?.pathname.includes('/intention')) step = 2;
+  if (category && spread && window?.location?.pathname.includes('/intention') && !window?.location?.pathname.includes('/cards')) step = 2;
+  if (category && spread && window?.location?.pathname.includes('/intention/cards') && !window?.location?.pathname.includes('/overview')) step = 3;
+  if (category && spread && window?.location?.pathname.includes('/intention/cards/overview')) step = 4;
 
-  // Spread info
   const spreadInfo = spread ? spreadsData.find(s => s.key === spread) : undefined;
   const cardCount = spreadInfo?.cardCount || 0;
   const [selectedCards, setSelectedCards] = React.useState<TarotCard[]>([]);
@@ -40,6 +45,8 @@ export default function ReadingStepper({ initialCategory, steps, translations, s
   const [revealing, setRevealing] = React.useState(false);
   const [starAnim, setStarAnim] = React.useState(false);
   const [showUnveilInfo, setShowUnveilInfo] = React.useState(false);
+  const [prompt, setPrompt] = React.useState<string | null>(null);
+  const [promptStepActive, setPromptStepActive] = React.useState(false);
   const tarotCards: TarotCard[] = tarotCardsData.cards;
 
   const spreadCategory = spread ? spreadCategoryMap[spread] : category;
@@ -47,16 +54,30 @@ export default function ReadingStepper({ initialCategory, steps, translations, s
   function handleCategorySelect(cat: string) {
     router.push(`/en/reading/category/${cat}`);
   }
-  function handleSpreadSelect(spread: any) {
+  function handleSpreadSelect(spreadObj: any) {
     if (category) {
-      router.push(`/${params.locale}/reading/category/${category}/spread/${spread.name}/cards`);
+      // IntentionStep'e geçiş
+      router.push(`/${locale}/reading/category/${category}/spread/${spreadObj.name}/intention`);
+      setPromptStepActive(true);
     }
   }
+  function handlePromptContinue(userPrompt: string) {
+    setPrompt(userPrompt);
+    setPromptStepActive(false);
+    // Kart seçimine geç
+    router.push(`/${locale}/reading/category/${category}/spread/${spread}/cards`);
+  }
+  function handlePromptSkip() {
+    setPrompt("");
+    setPromptStepActive(false);
+    router.push(`/${locale}/reading/category/${category}/spread/${spread}/cards`);
+  }
 
-  function handleStepChange(newStep: 0 | 1 | 2) {
-    if (newStep === 0) router.push(`/${params.locale}/reading`);
-    else if (newStep === 1 && spreadCategory) router.push(`/${params.locale}/reading/category/${spreadCategory}`);
-    else if (newStep === 2 && spreadCategory && spread) router.push(`/${params.locale}/reading/category/${spreadCategory}/spread/${spread}/cards`);
+  function handleStepChange(newStep: 0 | 1 | 2 | 3) {
+    if (newStep === 0) router.push(`/${locale}/reading`);
+    else if (newStep === 1 && spreadCategory) router.push(`/${locale}/reading/category/${spreadCategory}`);
+    else if (newStep === 2 && spreadCategory && spread) router.push(`/${locale}/reading/category/${spreadCategory}/spread/${spread}/intention`);
+    else if (newStep === 3 && spreadCategory && spread) router.push(`/${locale}/reading/category/${spreadCategory}/spread/${spread}/cards`);
   }
 
   function handleCardSelect(card: TarotCard) {
@@ -81,7 +102,6 @@ export default function ReadingStepper({ initialCategory, steps, translations, s
     setTimeout(() => setShowUnveilInfo(false), 2000);
   }
 
-  // Spread layout rendering (copy from CardSelect)
   const renderSpreadLayout = () => {
     const cardsForLayout = selectedCards.map((card, i) => ({ ...card, _animIndex: i }));
     switch (spreadInfo?.key) {
@@ -129,34 +149,48 @@ export default function ReadingStepper({ initialCategory, steps, translations, s
   };
 
   return (
-    <div>
+    <div className="relative">
+      <CosmicBackground />
       {showStepperBar && (
         <div className="sticky top-0 z-40 bg-[var(--primary-color)]/90 backdrop-blur rounded-b-xl">
-          <StepperBar step={step} onStepChange={handleStepChange} steps={steps} categorySelected={!!spreadCategory} category={spreadCategory} />
+          <StepperBar step={step} onStepChange={handleStepChange} steps={steps} categorySelected={!!spreadCategory} category={typeof spreadCategory === 'string' ? spreadCategory : (Array.isArray(spreadCategory) ? spreadCategory[0] : '')} />
         </div>
       )}
       <div className="relative flex flex-col pb-32 min-h-screen">
         <AnimatePresence mode="wait">
           {step === 0 && (
             <motion.div key="category" initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 40 }} transition={{ duration: 0.3 }} className="animate-fade-in flex-1 flex flex-col">
-              <CategorySelect onSelect={handleCategorySelect} translations={translations} />
+              <CategorySelect onSelect={handleCategorySelect} />
               <div className="flex-1" />
             </motion.div>
           )}
           {step === 1 && spreadCategory && (
             <motion.div key="spread" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.3 }} className="animate-fade-in flex-1 flex flex-col">
-              <SpreadSelect category={spreadCategory} onSelect={handleSpreadSelect} onBack={() => router.push(`/en/reading`)} translations={translations} />
+              <SpreadSelect category={category || ''} onSelect={handleSpreadSelect} onBack={() => router.push(`/${locale}/reading`)} />
               <div className="flex-1" />
             </motion.div>
           )}
-          {step === 2 && spread && spreadInfo && (
+          {step === 2 && spreadCategory && spread && (
+            <motion.div key="intention" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -40 }} transition={{ duration: 0.3 }} className="animate-fade-in flex-1 flex flex-col items-center">
+              <IntentionStep
+                locale={locale || 'en'}
+                translations={translations}
+                category={category || ''}
+                spread={spread || ''}
+                error={null}
+                maxLength={200}
+              />
+              <div className="flex-1" />
+            </motion.div>
+          )}
+          {step === 3 && spread && spreadInfo && (
             <motion.div key="cards" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -40 }} transition={{ duration: 0.3 }} className="animate-fade-in flex-1 flex flex-col items-center">
               {/* Spread info (image, label, desc) - sadece kartlar seçilmeden önce veya loading sırasında göster */}
               {(!revealed && !revealing) && (
                 <div className="flex flex-col items-center mb-6">
-                  <img src={spreadInfo.image} alt={spreadInfo.label} className="mb-2 w-full max-w-md rounded shadow" />
+                  <img src={spreadInfo.image} alt={spreadInfo.label} className="mb-2 w-full max-w-md rounded-xl shadow-xl border-2 border-yellow-400" />
                   <h2 className="text-xl font-bold mb-1 text-accent-gold drop-shadow-lg">{spreadInfo.label}</h2>
-                  <p className="text-base text-gray-700 text-center mb-2">{spreadInfo.desc}</p>
+                  <p className="text-base text-gray-100 text-center mb-2">{spreadInfo.desc}</p>
                 </div>
               )}
               {/* Kartlar seçilirken loading animasyonu */}
@@ -185,7 +219,7 @@ export default function ReadingStepper({ initialCategory, steps, translations, s
                   <div className="flex justify-center mt-8">
                     <UnveilButton
                       label={translations.reading_unveil_button}
-                      onClick={() => router.push(`/${params.locale}/reading/category/${category}/spread/${spread}/cards/result`)}
+                      onClick={() => router.push(`/${locale}/reading/category/${category}/spread/${spread}/cards/overview`)}
                       disabled={selectedCards.length < cardCount}
                       backgroundImage="/images/buttons/unveilTheStars_btn.png"
                     />

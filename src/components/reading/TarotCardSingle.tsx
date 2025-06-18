@@ -12,15 +12,18 @@ interface TarotCardSingleProps {
   card?: TarotCard;
   meaning?: string;       // Kartın açılıma göre anlamı
   meaningTitle?: string;  // Anlam başlığı (açılım pozisyonu gibi)
-  size?: 'sm' | 'md' | 'lg'; // Kart boyutu için prop
+  size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg'; // Kart boyutu için prop
   isBack?: boolean; // Kapalı kart göstergesi
+  showName?: boolean; // Kart isminin gösterilip gösterilmeyeceği
 }
 
-function ClosedTarotCard({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
+function ClosedTarotCard({ size = 'md' }: { size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' }) {
   const sizeMap = {
-    sm: 'w-16 h-28 md:w-20 md:h-36',
-    md: 'w-24 h-44 md:w-32 md:h-60',
-    lg: 'w-32 h-60 md:w-40 md:h-72',
+    xxs: 'w-12 h-24 md:w-16 md:h-32',
+    xs: 'w-16 h-32 md:w-20 md:h-40',
+    sm: 'w-20 h-40 md:w-28 md:h-56',
+    md: 'w-32 h-64 md:w-40 md:h-80',
+    lg: 'w-40 h-80 md:w-56 md:h-112',
   };
   return (
     <div
@@ -74,12 +77,14 @@ function ClosedTarotCard({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
   );
 }
 
-export default function TarotCardSingle({ card, meaning, meaningTitle, size = 'md', isBack }: TarotCardSingleProps) {
+export default function TarotCardSingle({ card, meaning, meaningTitle, size = 'md', isBack, showName }: TarotCardSingleProps) {
   // Boyutlar için eşleme
   const sizeMap = {
-    sm: 'w-16 h-28 md:w-20 md:h-36', // Küçük boyut
-    md: 'w-24 h-44 md:w-32 md:h-60', // Orta boyut
-    lg: 'w-32 h-60 md:w-40 md:h-72', // Büyük boyut
+    xxs: 'w-8 h-16 md:w-10 md:h-20',
+    xs: 'w-16 h-32 md:w-20 md:h-40',
+    sm: 'w-20 h-40 md:w-28 md:h-56',
+    md: 'w-32 h-64 md:w-40 md:h-80',
+    lg: 'w-40 h-80 md:w-56 md:h-112',
   };
 
   if (isBack) return <ClosedTarotCard size={size} />;
@@ -140,21 +145,23 @@ export default function TarotCardSingle({ card, meaning, meaningTitle, size = 'm
           )}
 
           {/* Kart Resim Alanı - Dikeyde ortalı ve boşluğu dolduracak */}
-          <AspectRatio ratio={3 / 5} className="w-full flex-grow flex items-center justify-center p-0.5">
+          <AspectRatio ratio={3 / 5} className={`w-full flex-grow flex items-center justify-center p-0.5${showName === false ? ' mb-0 pb-0' : ''}`}>
             <img
               src={getTarotCardImage(card)}
               alt={card.name}
-              className="object-contain rounded-md w-full h-full shadow-lg border border-gray-700 select-none pointer-events-none"
+              className={`object-contain rounded-md w-full h-full shadow-lg border border-gray-700 select-none pointer-events-none${showName === false ? ' mb-0 pb-0' : ''}`}
               draggable={false}
             />
           </AspectRatio>
 
           {/* Alt Kısım: Kart İsmi - Resmin hemen altında, daha küçük ve tek satır */}
-          <div className="w-full text-center flex-shrink-0 pt-0.5 pb-1 px-1 bg-black/50 rounded-b-[calc(0.75rem-1.5px)]">
-            <span className="block text-[9px] md:text-[11px] font-bold text-white tracking-wide line-clamp-1 capitalize" style={{ fontFamily: 'Cinzel Decorative, serif' }}> {/* Font boyutu küçültüldü ve line-clamp-1 ile tek satırda kalması sağlandı */}
-              {card.name}
-            </span>
-          </div>
+          {showName !== false && (
+            <div className="w-full text-center flex-shrink-0 py-0.5 px-1 bg-black/50 rounded-b-[calc(0.75rem-1.5px)]">
+              <span className="block text-[9px] md:text-[11px] font-bold text-white tracking-wide line-clamp-1 capitalize" style={{ fontFamily: 'Cinzel Decorative, serif' }}>
+                {card.name}
+              </span>
+            </div>
+          )}
         </CardContent>
       </Card>
     </motion.div>

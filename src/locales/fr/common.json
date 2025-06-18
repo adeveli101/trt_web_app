@@ -86,7 +86,7 @@
   "reading_spread_info": "Chaque tirage offre une manière unique d'explorer votre question. Cliquez sur l'icône d'information pour les détails.",
   "reading_spread_info_modal": "Voir les positions des cartes et les détails du tirage ici.",
   "reading_choose_cards": "Sélectionnez vos cartes",
-  "reading_cards_info": "Cliquez sur les cartes pour les sélectionner. Quand vous êtes prêt, dévoilez votre lecture !",
+  "reading_cards_info": "Cliquez sur le bouton pour tirer vos cartes. Vous ne pouvez tirer qu'une seule fois par lecture.",
   "reading_unveil_button": "Illuminer les Cartes Cosmiques",
   "reading_unveil_button_cosmic": "Illuminer les Cartes Cosmiques",
   "reading_back_button": "Retour",
@@ -228,6 +228,39 @@
   "spread_yearlySpread_meaning_11": "Thème ou objectif de Novembre.",
   "spread_yearlySpread_meaning_12": "Thème ou objectif de Décembre.",
   "features_desc": "Découvrez les fonctionnalités uniques qui font d'Astral Tarot votre guide vers le cosmos.",
-  "reading_step_result": "Résultat",
-  "reading_step_desc_result": "Voir le résultat et l'interprétation personnalisés de votre lecture de tarot."
+  "reading_step_overview": "Vue d'ensemble",
+  "reading_step_desc_overview": "Voir le résumé et l'interprétation personnalisés de votre lecture de tarot.",
+  "intention_examples_label": "Exemples d'Intentions",
+  "intention_general_examples": [
+    "Quelles énergies générales m'attendent dans la vie?",
+    "Quel est le message de l'univers pour moi aujourd'hui?"
+  ],
+  "intention_love_examples": [
+    "Qu'est-ce qui m'attend dans ma vie amoureuse?",
+    "Comment va évoluer ma relation avec X?"
+  ],
+  "intention_career_examples": [
+    "Quelle devrait être ma prochaine étape de carrière?",
+    "Dois-je changer d'emploi?"
+  ],
+  "intention_spiritual_examples": [
+    "Quelles leçons spirituelles suis-je en train d'apprendre?",
+    "Que me dit mon guide intérieur?"
+  ],
+  "intention_health_examples": [
+    "À quoi dois-je faire attention pour ma santé?",
+    "Comment puis-je maintenir mon équilibre mental et physique?"
+  ],
+  "intention_custom_placeholder": "Écrivez votre propre question...",
+  "intention_custom_confirm": "Confirmer l'Intention",
+  "reading_step_prompt": "Intention",
+  "reading_step_desc_prompt": "Définissez votre intention ou question pour le tirage.",
+  "prompt_step_title": "Définissez votre intention",
+  "prompt_step_desc": "Before you draw the cards, set a clear intention or question.",
+  "prompt_step_placeholder": "Écrivez votre intention ou question...",
+  "prompt_step_skip": "Passer",
+  "prompt_step_continue": "Continuer",
+  "prompt_step_motivation_1": "Prenez un moment pour vous concentrer sur votre intention.",
+  "prompt_step_motivation_2": "Que cherche vraiment votre cœur ?",
+  "prompt_step_motivation_3": "Plus votre question est claire, plus la guidance sera claire."
 }

@@ -86,7 +86,7 @@
   "reading_spread_info": "Ogni stesura offre un modo unico per esplorare la tua domanda. Clicca sull'icona delle informazioni per i dettagli.",
   "reading_spread_info_modal": "Vedi qui le posizioni delle carte e i dettagli della stesura.",
   "reading_choose_cards": "Seleziona le tue carte",
-  "reading_cards_info": "Clicca sulle carte per selezionarle. Quando sei pronto, svela la tua lettura!",
+  "reading_cards_info": "Haz clic en el botón para sacar tus cartas. Solo puedes sacar una vez por lectura.",
   "reading_unveil_button": "Iluminar las Cartas Cósmicas",
   "reading_unveil_button_cosmic": "Iluminar las Cartas Cósmicas",
   "reading_back_button": "Indietro",
@@ -228,6 +228,40 @@
   "spread_yearlySpread_meaning_11": "Tema o focus di Novembre.",
   "spread_yearlySpread_meaning_12": "Tema o focus di Dicembre.",
   "features_desc": "Descubre las características únicas que hacen de Astral Tarot tu guía hacia el cosmos.",
-  "reading_step_result": "Resultado",
-  "reading_step_desc_result": "Vea el resultado e interpretación personalizados de su lectura de tarot."
+  "reading_step_overview": "Resumen",
+  "reading_step_desc_result": "Vea el resultado e interpretación personalizados de su lectura de tarot.",
+  "intention_examples_label": "Ejemplos de Intención",
+  "intention_general_examples": [
+    "¿Qué energías generales me esperan en la vida?",
+    "¿Cuál es el mensaje del universo para mí hoy?"
+  ],
+  "intention_love_examples": [
+    "¿Qué me espera en mi vida amorosa?",
+    "¿Cómo se desarrollará mi relación con X?"
+  ],
+  "intention_career_examples": [
+    "¿Cuál debería ser mi próximo paso en mi carrera?",
+    "¿Debería cambiar de trabajo?"
+  ],
+  "intention_spiritual_examples": [
+    "¿Qué lecciones espirituales estoy aprendiendo?",
+    "¿Qué me dice mi guía interior?"
+  ],
+  "intention_health_examples": [
+    "¿A qué debo prestar atención para mi salud?",
+    "¿Cómo puedo mantener mi equilibrio mental y físico?"
+  ],
+  "intention_custom_placeholder": "Escribe tu propia pregunta...",
+  "intention_custom_confirm": "Confirmar Intención",
+  "reading_step_prompt": "Intención",
+  "reading_step_desc_prompt": "Establece tu intención o pregunta para la lectura.",
+  "prompt_step_title": "Establece tu intención",
+  "prompt_step_desc": "Before you draw the cards, set a clear intention or question.",
+  "prompt_step_placeholder": "Escribe tu intención o pregunta...",
+  "prompt_step_skip": "Omitir",
+  "prompt_step_continue": "Continuar",
+  "prompt_step_motivation_1": "Tómate un momento para enfocar tu intención.",
+  "prompt_step_motivation_2": "¿Qué es lo que realmente busca tu corazón?",
+  "prompt_step_motivation_3": "Cuanto más clara sea tu pregunta, más clara será la guía.",
+  "reading_step_desc_overview": "Vea el resumen e interpretación personalizados de su lectura de tarot."
 }

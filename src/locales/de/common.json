@@ -86,7 +86,7 @@
   "reading_spread_info": "Jedes Legesystem bietet eine einzigartige Möglichkeit, deine Frage zu erkunden. Klicke auf das Info-Symbol für Details.",
   "reading_spread_info_modal": "Hier siehst du die Kartenpositionen und Legesystemdetails.",
   "reading_choose_cards": "Wähle deine Karten aus",
-  "reading_cards_info": "Klicke auf die Karten, um sie auszuwählen. Wenn du bereit bist, enthülle deine Legung!",
+  "reading_cards_info": "Klicke auf den Button, um deine Karten zu ziehen. Du kannst pro Legung nur einmal ziehen.",
   "reading_unveil_button": "Die Kosmischen Karten erleuchten",
   "reading_unveil_button_cosmic": "Die Kosmischen Karten erleuchten",
   "reading_back_button": "Zurück",
@@ -228,6 +228,39 @@
   "spread_yearlySpread_meaning_11": "November-Thema oder -Fokus.",
   "spread_yearlySpread_meaning_12": "Dezember-Thema oder -Fokus.",
   "features_desc": "Entdecke die einzigartigen Funktionen, die Astral Tarot zu deinem Wegweiser im Kosmos machen.",
-  "reading_step_result": "Ergebnis",
-  "reading_step_desc_result": "Sieh dein personalisiertes Tarot-Lesungsergebnis und die Interpretation."
+  "reading_step_overview": "Übersicht",
+  "reading_step_desc_overview": "Sieh dir die Übersicht und Interpretation deiner personalisierten Tarot-Lesung an.",
+  "intention_examples_label": "Beispiel-Absichten",
+  "intention_general_examples": [
+    "Welche allgemeinen Energien erwarten mich im Leben?",
+    "Was ist die Botschaft des Universums für mich heute?"
+  ],
+  "intention_love_examples": [
+    "Was erwartet mich in meinem Liebesleben?",
+    "Wie wird sich meine Beziehung zu X entwickeln?"
+  ],
+  "intention_career_examples": [
+    "Was sollte mein nächster Karriereschritt sein?",
+    "Sollte ich den Job wechseln?"
+  ],
+  "intention_spiritual_examples": [
+    "Welche spirituellen Lektionen lerne ich?",
+    "Was sagt mir meine innere Führung?"
+  ],
+  "intention_health_examples": [
+    "Worauf sollte ich für meine Gesundheit achten?",
+    "Wie kann ich mein mentales und körperliches Gleichgewicht erhalten?"
+  ],
+  "intention_custom_placeholder": "Schreibe deine eigene Frage...",
+  "intention_custom_confirm": "Absicht bestätigen",
+  "reading_step_prompt": "Absicht",
+  "reading_step_desc_prompt": "Setzen Sie Ihre Absicht oder Frage für die Legung.",
+  "prompt_step_title": "Setze deine Absicht",
+  "prompt_step_desc": "Before you draw the cards, set a clear intention or question.",
+  "prompt_step_placeholder": "Gib deine Absicht oder Frage ein...",
+  "prompt_step_skip": "Überspringen",
+  "prompt_step_continue": "Weiter",
+  "prompt_step_motivation_1": "Nimm dir einen Moment Zeit, um dich auf deine Absicht zu konzentrieren.",
+  "prompt_step_motivation_2": "Was sucht dein Herz wirklich?",
+  "prompt_step_motivation_3": "Je klarer deine Frage, desto klarer die Führung."
 }

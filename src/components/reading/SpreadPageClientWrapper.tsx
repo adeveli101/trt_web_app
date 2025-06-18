@@ -11,6 +11,8 @@ import SingleCardSpread from "@/components/reading/spreads/SingleCardSpread";
 import YearlySpread from "@/components/reading/spreads/YearlySpread";
 import DefaultSpread from "@/components/reading/spreads/DefaultSpread";
 import tarotCardsData from "@/lib/data/tarot_cards_en.json";
+import SectionHeading from "@/components/ui/SectionHeading";
+import CosmicBackground from "@/components/layout/CosmicBackground";
 
 const spreadComponentMap: Record<string, any> = {
   celticCross: CelticCrossSpread,
@@ -43,7 +45,8 @@ export default function SpreadPageClientWrapper({ spreadObj, locale, category, t
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-[var(--bg-color)] w-full">
+    <section className="relative min-h-screen flex flex-col items-center w-full bg-[var(--bg-color)] py-12 md:py-20 px-2 md:px-8">
+      <CosmicBackground />
       <div className="sticky top-0 z-40 w-full">
         <StepperBarClientWrapper
           categorySelected={!!category}
@@ -52,9 +55,11 @@ export default function SpreadPageClientWrapper({ spreadObj, locale, category, t
           spread={spreadObj.key}
         />
       </div>
-      <div className="w-full max-w-5xl mx-auto flex flex-col items-center justify-center px-2 sm:px-4 mt-4 text-center">
-        <h1 className="text-3xl font-bold mb-4 text-accent-gold drop-shadow-lg text-center">{spreadObj.label}</h1>
-        <p className="mb-8 text-lg text-gray-700 max-w-2xl text-center">{spreadObj.desc}</p>
+      <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center justify-center px-2 sm:px-4 mt-4 text-center">
+        <SectionHeading className="mb-4 text-accent-gold drop-shadow-lg text-center" font="cinzel">
+          {spreadObj.label}
+        </SectionHeading>
+        <p className="mb-8 text-lg text-gray-300 max-w-2xl text-center font-cabin">{spreadObj.desc}</p>
         {!revealed && !revealing ? (
           <img
             src={spreadObj.image}
@@ -90,6 +95,6 @@ export default function SpreadPageClientWrapper({ spreadObj, locale, category, t
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 } 

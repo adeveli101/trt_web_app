@@ -4,7 +4,7 @@ import { TarotCard, SpreadType } from "./tarotTypes";
 const tarotCards: TarotCard[] = tarotCardsData.cards;
 
 // Spread pozisyonları konfigürasyonu
-const spreadPositions: Record<string, string[]> = {
+export const spreadPositions: Record<string, string[]> = {
   singleCard: ["Card"],
   pastPresentFuture: ["Past", "Present", "Future"],
   problemSolution: ["Problem", "Reason", "Solution"],

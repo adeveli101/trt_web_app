@@ -7,6 +7,8 @@ import { useTranslations } from "next-intl";
 import StepperBarClientWrapper from "./StepperBarClientWrapper";
 import { useParams } from "next/navigation";
 import { spreadCategoryMap } from "@/lib/data/spreadCategoryMap";
+import SectionHeading from "@/components/ui/SectionHeading";
+import CosmicBackground from "@/components/layout/CosmicBackground";
 
 const allSpreads: SpreadType[] = [
   { name: "singleCard", cardCount: 1 },
@@ -126,31 +128,76 @@ export default function SpreadSelect({ category, onSelect, onBack }: { category:
   const locale = params.locale as string;
   const spreads = allSpreads.filter(s => spreadCategoryMap[category]?.includes(s.name));
 
+  function handleSpreadClick(spread: SpreadType) {
+    // Go to prompt step, not cards
+    window.location.href = `/${locale}/reading/category/${category}/spread/${spread.name}`;
+  }
+
   return (
-    <div className="flex flex-col items-center w-full min-h-screen bg-[var(--bg-color)]">
+    <section className="relative flex flex-col items-center w-full min-h-screen bg-[var(--bg-color)] py-12 md:py-20 px-2 md:px-8">
+      <CosmicBackground />
       <div className="sticky top-0 z-40 w-full">
         <StepperBarClientWrapper categorySelected={!!category} category={category} locale={locale} spread={""} />
       </div>
-      <div className="flex-1 w-full flex flex-col justify-center px-0">
+      <div className="flex-1 w-full flex flex-col justify-center px-0 relative z-10">
         <div className="flex flex-col items-center mt-8 w-full">
-          <h2 className="text-2xl font-bold mb-8 text-accent-gold drop-shadow-lg">{t('reading_choose_spread')}</h2>
-          <div className="mb-4 w-full px-8 mx-auto">
-            <div className="bg-gradient-to-r from-[var(--secondary-color)] to-[var(--accent-color)] text-white text-sm md:text-base rounded-lg px-4 py-3 shadow-md text-center animate-fade-in">
+          <SectionHeading className="mb-8 text-accent-gold drop-shadow-lg" font="cinzel">
+            {t('reading_choose_spread')}
+          </SectionHeading>
+          <div className="mb-4 w-full px-0 md:px-8 mx-auto">
+            <div className="bg-gradient-to-r from-[var(--secondary-color)] to-[var(--accent-color)] text-white text-sm md:text-base rounded-lg px-4 py-3 shadow-md text-center animate-fade-in font-cabin">
               {t('reading_spread_info')}
             </div>
           </div>
-          <div className="w-full overflow-x-auto pb-2">
-            <div className="flex gap-6 sm:gap-8 snap-x snap-mandatory w-max px-2 sm:px-6 md:px-8">
+          {/* Mobilde yatay scroll, md+ grid */}
+          <div className="w-full">
+            {/* Mobilde yatay scroll */}
+            <div className="w-full overflow-x-auto pb-2 md:hidden">
+              <div className="flex w-max gap-6 snap-x snap-mandatory px-2 sm:px-6">
+                {spreads.length === 0 ? (
+                  Array.from({ length: 4 }).map((_, i) => (
+                    <Skeleton key={i} className="min-h-[220px] h-full min-w-[200px] w-[80vw] max-w-[260px] rounded-2xl bg-gradient-to-br from-[#180026] via-[#3B006A] to-[#7A2062]" />
+                  ))
+                ) : (
+                  spreads.map((spread, i) => (
+                    <button
+                      key={spread.name}
+                      onClick={() => handleSpreadClick(spread)}
+                      aria-label={t(`spread_${spread.name}_title`)}
+                      className="flex flex-col items-center rounded-2xl overflow-hidden shadow-lg border border-[var(--accent-color)] group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold p-0 bg-gradient-to-br from-[#180026] via-[#3B006A] to-[#7A2062] min-h-[220px] h-full min-w-[200px] w-[80vw] max-w-[260px] snap-center relative transition-all duration-300 hover:border-accent-gold hover:shadow-2xl font-cabin"
+                      style={{ fontFamily: 'Cabin, Cinzel Decorative, sans-serif' }}
+                    >
+                      <div className="w-full aspect-[16/7] min-h-[180px] relative bg-[#1a0026]">
+                        <img
+                          src={`/images/spreads/${spread.name}.png`}
+                          alt={t(`spread_${spread.name}_title`)}
+                          className="object-contain w-full h-full transition-transform duration-300 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        <div className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-accent-gold group-hover:shadow-gold transition-all duration-300 z-10" />
+                      </div>
+                      <div className="w-full flex flex-col items-start px-4 py-3">
+                        <h2 className="text-xl xl:text-2xl font-bold text-accent-gold mb-1" style={{ fontFamily: 'Cinzel Decorative, serif' }}>{t(`spread_${spread.name}_title`)}</h2>
+                        <span className="text-sm xl:text-base text-gray-300 text-left leading-snug" style={{ fontFamily: 'Cabin, sans-serif' }}>{t(`spread_${spread.name}_desc`)}</span>
+                      </div>
+                    </button>
+                  ))
+                )}
+              </div>
+            </div>
+            {/* md+ grid görünümü */}
+            <div className="hidden md:grid grid-cols-2 xl:grid-cols-3 gap-8 w-full">
               {spreads.length === 0 ? (
-                Array.from({ length: 4 }).map((_, i) => (
-                  <Skeleton key={i} className="min-h-[220px] h-full w-[260px] rounded-2xl bg-gradient-to-br from-[#180026] via-[#3B006A] to-[#7A2062]" />
+                Array.from({ length: 6 }).map((_, i) => (
+                  <Skeleton key={i} className="min-h-[220px] h-full w-full rounded-2xl bg-gradient-to-br from-[#180026] via-[#3B006A] to-[#7A2062]" />
                 ))
               ) : (
                 spreads.map((spread, i) => (
                   <button
                     key={spread.name}
-                    onClick={() => onSelect(spread)}
-                    className="flex flex-col items-center rounded-2xl overflow-hidden shadow-lg border border-[var(--accent-color)] group focus:outline-none p-0 bg-gradient-to-br from-[#180026] via-[#3B006A] to-[#7A2062] min-h-[220px] h-full w-[260px] snap-center relative transition-all duration-300 hover:border-accent-gold hover:shadow-2xl"
+                    onClick={() => handleSpreadClick(spread)}
+                    aria-label={t(`spread_${spread.name}_title`)}
+                    className="flex flex-col items-center rounded-2xl overflow-hidden shadow-lg border border-[var(--accent-color)] group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold p-0 bg-gradient-to-br from-[#180026] via-[#3B006A] to-[#7A2062] min-h-[220px] h-full w-full snap-center relative transition-all duration-300 hover:border-accent-gold hover:shadow-2xl font-cabin"
                     style={{ fontFamily: 'Cabin, Cinzel Decorative, sans-serif' }}
                   >
                     <div className="w-full aspect-[16/7] min-h-[180px] relative bg-[#1a0026]">
@@ -208,6 +255,6 @@ export default function SpreadSelect({ category, onSelect, onBack }: { category:
       {onBack && (
         <button onClick={onBack} className="mt-6 text-accent-gold underline">{t('reading_back_button')}</button>
       )}
-    </div>
+    </section>
   );
 } 

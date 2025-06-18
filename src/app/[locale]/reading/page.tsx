@@ -36,20 +36,26 @@ export default async function Page({ params }: { params: { locale: string } }) {
       keyword: translations.spread_singleCard_title
     },
     {
+      label: translations.reading_step_prompt,
+      desc: translations.reading_step_desc_prompt,
+      icon: "/images/steps/intention_icon.png",
+      keyword: translations.reading_step_prompt
+    },
+    {
       label: translations.reading_step_cards,
       desc: translations.reading_step_desc_cards,
       icon: "/images/steps/cards_icon.png",
       keyword: translations.reading_choose_cards
     },
     {
-      label: translations.reading_step_result,
-      desc: translations.reading_step_desc_result,
-      icon: "/images/steps/result_icon.png",
-      keyword: translations.reading_result_keyword
+      label: translations.reading_step_overview,
+      desc: translations.reading_step_desc_overview,
+      icon: "/images/steps/overview_icon.png"
     }
   ];
   return (
-    <div className="w-full flex-1 flex flex-col justify-center px-0">
+    <div className="relative min-h-screen w-full flex flex-col bg-gradient-to-br from-[#2a1746] via-[#3a1053] to-[var(--bg-color)] overflow-x-hidden">
+      {/* Kozmik yıldız SVG ve noise overlay landing'deki gibi buraya eklenebilir */}
       <ReadingPage
         locale={locale}
         translations={translations}

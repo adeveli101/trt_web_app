@@ -1,4 +1,4 @@
-import CategoryPageClientWrapper from '@/components/reading/CategoryPageClientWrapper';
+import CategoryPageClientWrapper from '@/components/reading/category/CategoryPageClientWrapper';
 import categoriesData from '@/lib/data/categories.json';
 import spreadsData from '@/lib/data/spreads.json';
 import StepperBarClientWrapper from '@/components/reading/StepperBarClientWrapper';

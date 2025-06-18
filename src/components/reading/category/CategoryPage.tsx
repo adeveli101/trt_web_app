@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import spreadsData from "@/lib/data/spreads.json";
 import { spreadCategoryMap } from "@/lib/data/spreadCategoryMap";
+import CosmicBackground from "@/components/layout/CosmicBackground";
 
 export default function CategoryPage({ category, locale, categoriesData, onSelect }: { category: string, locale: string, categoriesData: any[], onSelect?: (spreadKey: string) => void }) {
   const t = useTranslations('common');
@@ -16,6 +17,7 @@ export default function CategoryPage({ category, locale, categoriesData, onSelec
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-[var(--bg-color)] w-full">
+      <CosmicBackground />
       <h1 className="text-3xl font-bold mt-8 mb-4 text-accent-gold drop-shadow-lg">{t(`category_${categoryObj.key}_label`) || categoryObj.label}</h1>
       <p className="mb-8 text-lg text-gray-700 max-w-2xl text-center">{t(`reading_category_insight_${categoryObj.key}`) || categoryObj.insight}</p>
       <div className="w-full max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-x-0 gap-y-10 mt-4 px-2 sm:px-4 justify-items-center">

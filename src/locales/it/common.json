@@ -86,7 +86,7 @@
   "reading_spread_info": "Ogni stesura offre un modo unico per esplorare la tua domanda. Clicca sull'icona delle informazioni per i dettagli.",
   "reading_spread_info_modal": "Vedi qui le posizioni delle carte e i dettagli della stesura.",
   "reading_choose_cards": "Seleziona le tue carte",
-  "reading_cards_info": "Clicca sulle carte per selezionarle. Quando sei pronto, svela la tua lettura!",
+  "reading_cards_info": "Clicca sul pulsante per pescare le tue carte. Puoi pescare solo una volta per lettura.",
   "reading_unveil_button": "Illuminare le Carte Cosmiche",
   "reading_back_button": "Indietro",
   "reading_spread_modal_card_positions": "Posizioni delle carte:",
@@ -228,6 +228,40 @@
   "spread_yearlySpread_meaning_12": "Tema o focus di Dicembre.",
   "reading_unveil_button_cosmic": "Illuminare le Carte Cosmiche",
   "features_desc": "Scopri le caratteristiche uniche che rendono Astral Tarot la tua guida verso il cosmo.",
-  "reading_step_result": "Risultato",
-  "reading_step_desc_result": "Visualizza il risultato e l'interpretazione personalizzati della tua lettura dei tarocchi."
+  "reading_step_overview": "Panoramica",
+  "reading_step_desc_result": "Visualizza il risultato e l'interpretazione personalizzati della tua lettura dei tarocchi.",
+  "intention_examples_label": "Esempi di Intenzione",
+  "intention_general_examples": [
+    "Quali energie generali mi aspettano nella vita?",
+    "Qual è il messaggio dell'universo per me oggi?"
+  ],
+  "intention_love_examples": [
+    "Cosa mi aspetta nella mia vita amorosa?",
+    "Come si svilupperà la mia relazione con X?"
+  ],
+  "intention_career_examples": [
+    "Quale dovrebbe essere il mio prossimo passo nella carriera?",
+    "Dovrei cambiare lavoro?"
+  ],
+  "intention_spiritual_examples": [
+    "Quali lezioni spirituali sto imparando?",
+    "Cosa mi dice la mia guida interiore?"
+  ],
+  "intention_health_examples": [
+    "A cosa dovrei prestare attenzione per la mia salute?",
+    "Come posso mantenere il mio equilibrio mentale e fisico?"
+  ],
+  "intention_custom_placeholder": "Scrivi la tua domanda...",
+  "intention_custom_confirm": "Conferma Intenzione",
+  "reading_step_prompt": "Intenzione",
+  "reading_step_desc_prompt": "Imposta la tua intenzione o domanda per la lettura.",
+  "prompt_step_title": "Imposta la tua intenzione",
+  "prompt_step_desc": "Before you draw the cards, set a clear intention or question.",
+  "prompt_step_placeholder": "Scrivi la tua intenzione o domanda...",
+  "prompt_step_skip": "Salta",
+  "prompt_step_continue": "Continua",
+  "prompt_step_motivation_1": "Prenditi un momento per focalizzare la tua intenzione.",
+  "prompt_step_motivation_2": "Cosa cerca davvero il tuo cuore?",
+  "prompt_step_motivation_3": "Più chiara è la tua domanda, più chiara sarà la guida.",
+  "reading_step_desc_overview": "Visualizza la panoramica e l'interpretazione personalizzate della tua lettura dei tarocchi."
 }

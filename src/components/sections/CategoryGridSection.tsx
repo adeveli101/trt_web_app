@@ -37,7 +37,7 @@ export default function CategoryGridSection() {
           >
             {t('features_desc')}
           </motion.p>
-          <div className="grid grid-cols-1 gap-8 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
             {categories.map((cat, i) => (
               <motion.div
                 key={cat.key}

@@ -86,7 +86,7 @@
   "reading_spread_info": "Each spread offers a unique way to explore your question. Click the info icon for details.",
   "reading_spread_info_modal": "See the card positions and spread details here.",
   "reading_choose_cards": "Select your cards",
-  "reading_cards_info": "Click on the cards to select them. When ready, unveil your reading!",
+  "reading_cards_info": "Click the button to draw your cards.",
   "reading_unveil_button": "Illuminate the Cosmic Cards",
   "reading_unveil_button_cosmic": "Illuminate the Cosmic Cards",
   "reading_back_button": "Back",
@@ -218,6 +218,40 @@
   "spread_yearlySpread_meaning_11": "November's theme or focus.",
   "spread_yearlySpread_meaning_12": "December's theme or focus.",
   "features_desc": "Discover the unique features that make Astral Tarot your guide to the cosmos.",
-  "reading_step_result": "Result",
-  "reading_step_desc_result": "See your personalized tarot reading result and interpretation."
+  "reading_step_overview": "Overview",
+  "reading_step_desc_result": "See your personalized tarot reading result and interpretation.",
+  "intention_examples_label": "Example Intentions",
+  "intention_general_examples": [
+    "What general energies await me in life?",
+    "What is the universe's message for me today?"
+  ],
+  "intention_love_examples": [
+    "What awaits me in my love life?",
+    "How will my relationship with X develop?"
+  ],
+  "intention_career_examples": [
+    "What should be my next step in my career?",
+    "Should I change jobs?"
+  ],
+  "intention_spiritual_examples": [
+    "What spiritual lessons am I learning?",
+    "What is my inner guidance telling me?"
+  ],
+  "intention_health_examples": [
+    "What should I pay attention to for my health?",
+    "How can I maintain my mental and physical balance?"
+  ],
+  "intention_custom_placeholder": "Write your own question...",
+  "intention_custom_confirm": "Confirm Intention",
+  "reading_step_prompt": "Intention",
+  "reading_step_desc_prompt": "Set your intention or question for the reading.",
+  "prompt_step_title": "Set Your Intention",
+  "prompt_step_desc": "Before you draw the cards, set a clear intention or question.",
+  "prompt_step_placeholder": "Type your intention or question...",
+  "prompt_step_skip": "Skip",
+  "prompt_step_continue": "Continue",
+  "prompt_step_motivation_1": "Take a moment to focus your intention.",
+  "prompt_step_motivation_2": "What is your heart truly seeking?",
+  "prompt_step_motivation_3": "The clearer your question, the clearer the guidance.",
+  "reading_step_desc_overview": "See your personalized tarot reading overview and interpretation."
 } 

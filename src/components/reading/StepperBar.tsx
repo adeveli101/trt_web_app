@@ -4,9 +4,9 @@ import clsx from "clsx";
 import { StepSeparatorSVG } from "../ui/StepSeparatorSVG";
 import { useTranslations } from "next-intl";
 
-export default function StepperBar({ step, onStepChange, categorySelected, category }: { step: number; onStepChange: (step: 0 | 1 | 2) => void, categorySelected?: boolean, category?: string }) {
+export default function StepperBar({ step, onStepChange, categorySelected, category, steps: stepsProp }: { step: number; onStepChange: (step: 0 | 1 | 2 | 3) => void, categorySelected?: boolean, category?: string, steps?: any[] }) {
   const t = useTranslations('common');
-  const steps = [
+  const defaultSteps = [
     {
       label: t('reading_step_category'),
       icon: '/images/steps/category_icon.png',
@@ -18,23 +18,29 @@ export default function StepperBar({ step, onStepChange, categorySelected, categ
       desc: t('reading_step_desc_spread'),
     },
     {
+      label: t('reading_step_prompt'),
+      icon: '/images/steps/intention_icon.png',
+      desc: t('reading_step_desc_prompt'),
+    },
+    {
       label: t('reading_step_cards'),
       icon: '/images/steps/cards_icon.png',
       desc: t('reading_step_desc_cards'),
     },
     {
-      label: t('reading_step_result'),
-      icon: '/images/steps/result_icon.png',
-      desc: t('reading_step_desc_result'),
+      label: t('reading_step_overview'),
+      icon: '/images/steps/overview_icon.png',
+      desc: t('reading_step_desc_overview'),
     },
   ];
+  const steps = stepsProp || defaultSteps;
 
   // Tailwind'e eklenmiş olması gereken animasyon örneği:
   // .animate-gradient-move { background-size: 200% 200%; animation: gradientMove 8s ease-in-out infinite; }
   // @keyframes gradientMove { 0% {background-position:0% 50%} 50% {background-position:100% 50%} 100% {background-position:0% 50%} }
 
   return (
-    <div className="flex flex-col items-center w-full mb-8 sticky top-0 z-30 py-4 rounded-b-2xl overflow-hidden"
+    <div className="flex flex-col items-center w-full mb-8 sticky top-0 z-30 py-3 rounded-b-2xl overflow-hidden"
       style={{
         background: "linear-gradient(120deg, #180026 0%, #3B006A 50%, #7A2062 100%)",
         animation: "gradientMove 16s ease-in-out infinite",
@@ -58,12 +64,14 @@ export default function StepperBar({ step, onStepChange, categorySelected, categ
                   <button
                     type="button"
                     disabled={!isClickable}
-                    onClick={isClickable ? () => onStepChange(i as 0 | 1 | 2) : undefined}
+                    onClick={isClickable ? () => onStepChange(i as 0 | 1 | 2 | 3) : undefined}
                     className={clsx(
                       "transition-all duration-300 relative z-10 overflow-hidden rounded-xl flex items-center justify-center p-0.5",
                       step === i
                         ? "w-24 h-16 sm:w-28 sm:h-20 md:w-40 md:h-28 border-[2.5px] border-animated-darkred shadow-[0_4px_32px_0_#2c001888]"
-                        : "w-20 h-13 sm:w-22 sm:h-16 md:w-32 md:h-20 border border-[#2c0018]/60",
+                        : step > i
+                          ? "w-20 h-13 sm:w-22 sm:h-16 md:w-32 md:h-20 border-2 border-green-400"
+                          : "w-20 h-13 sm:w-22 sm:h-16 md:w-32 md:h-20 border border-[#2c0018]/60",
                       !isClickable && "pointer-events-none opacity-60"
                     )}
                     aria-current={step === i ? "step" : undefined}
@@ -86,12 +94,6 @@ export default function StepperBar({ step, onStepChange, categorySelected, categ
                       alt={s.label}
                       className="w-full h-full object-contain rounded-xl pointer-events-none"
                     />
-                    {/* Tamamlanan adımda ödül/ikon */}
-                    {step > i && (
-                      <span className="absolute -top-2 right-2 text-green-500">
-                        <svg width="18" height="18" fill="none"><circle cx="9" cy="9" r="8" stroke="#22c55e" strokeWidth="2"/><path d="M5 9l3 3 5-5" stroke="#22c55e" strokeWidth="2" fill="none" /></svg>
-                      </span>
-                    )}
                   </button>
                 </div>
                 <span className={clsx(

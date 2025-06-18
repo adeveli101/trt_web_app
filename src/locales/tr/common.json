@@ -228,6 +228,39 @@
   "spread_yearlySpread_meaning_10": "Ekim ayı teması veya odağı.",
   "spread_yearlySpread_meaning_11": "Kasım ayı teması veya odağı.",
   "spread_yearlySpread_meaning_12": "Aralık ayı teması veya odağı.",
-  "reading_step_result": "Sonuç",
-  "reading_step_desc_result": "Kişiselleştirilmiş tarot okuma sonucunu ve yorumunu gör."
+  "reading_step_overview": "Genel Bakış",
+  "reading_step_desc_overview": "Kişiselleştirilmiş tarot okuma sonucunu ve yorumunu gör.",
+  "intention_examples_label": "Örnek Niyetler",
+  "intention_general_examples": [
+    "Hayatımda beni bekleyen genel enerjiler neler?",
+    "Bugün için evrenin mesajı nedir?"
+  ],
+  "intention_love_examples": [
+    "Aşk hayatımda beni neler bekliyor?",
+    "X ile olan ilişkim nasıl gelişecek?"
+  ],
+  "intention_career_examples": [
+    "Kariyerimde bir sonraki adımım ne olmalı?",
+    "İş değişikliği yapmalı mıyım?"
+  ],
+  "intention_spiritual_examples": [
+    "Ruhsal olarak hangi dersleri öğreniyorum?",
+    "İçsel rehberliğim bana ne söylüyor?"
+  ],
+  "intention_health_examples": [
+    "Sağlığım için nelere dikkat etmeliyim?",
+    "Zihinsel ve fiziksel dengemi nasıl koruyabilirim?"
+  ],
+  "intention_custom_placeholder": "Kendi sorunuzu yazın...",
+  "intention_custom_confirm": "Niyeti Onayla",
+  "reading_step_prompt": "Niyet",
+  "reading_step_desc_prompt": "Açılım için bir niyet veya soru belirleyin.",
+  "prompt_step_title": "Niyetini Belirle",
+  "prompt_step_desc": "Kartları seçmeden önce, net bir niyet veya soru belirleyin.",
+  "prompt_step_placeholder": "Niyetinizi veya sorunuzu yazın...",
+  "prompt_step_skip": "Atla",
+  "prompt_step_continue": "Devam Et",
+  "prompt_step_motivation_1": "Niyetinize odaklanmak için bir an durun.",
+  "prompt_step_motivation_2": "Kalbiniz gerçekten ne arıyor?",
+  "prompt_step_motivation_3": "Sorunuz ne kadar net olursa, rehberlik de o kadar net olur."
 }
