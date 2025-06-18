@@ -80,42 +80,36 @@ export function buildTarotPrompt({
   analysisFocus: string;
 }) {
   const userInfoSection = userInfo
-    ? `User Information:\n${userInfo.name ? "- Name: " + userInfo.name + "\n" : ""}${userInfo.age ? "- Age: " + userInfo.age + "\n" : ""}${userInfo.gender ? "- Gender: " + userInfo.gender + "\n" : ""}Personalize the reading based on this information where relevant to the '${category}' context.`
-    : "User information not provided; provide a general interpretation.";
+    ? `User Info: ${userInfo.name ? "Name: " + userInfo.name + ", " : ""}${userInfo.age ? "Age: " + userInfo.age + ", " : ""}${userInfo.gender ? "Gender: " + userInfo.gender : ""}`
+    : "General interpretation.";
+  
   const customPromptSection = customPrompt
-    ? `User's custom question/focus: "${customPrompt}"\nAddress this specifically in your interpretation.`
-    : `No specific question provided; focus on the general ${category} context.`;
+    ? `Focus: "${customPrompt}"`
+    : `Focus: General ${category} context.`;
+  
+  // Optimized card details - sadece gerekli bilgiler
   const cardDetails = Object.entries(spread)
     .map(
       ([position, card]) =>
-        `- Position: "${position}"\n  - Card: "${card.name}"\n  - Keywords: ${JSON.stringify(card.keywords)}\n  - Light Meanings: ${JSON.stringify(card.meanings.light)}\n  - Shadow Meanings: ${JSON.stringify(card.meanings.shadow)}`
+        `${position}: "${card.name}" (${card.keywords.join(", ")})`
     )
     .join("\n");
 
   return `
 SYSTEM: ${personaDescription}
-You MUST generate the response *only* in the language with code: "${locale}".
-Adhere strictly to the specified Markdown format using '###' for main sections.
-Do not include technical placeholders or instructions to yourself in the final output.
-Focus on providing insightful, detailed, creative, and empathetic interpretations related to the user's context.
+Language: "${locale}"
+Format: Use '###' for sections. Focus on ${category} context.
 
 USER:
-Tarot Reading Request
----------------------
-Spread Type: ${spreadName}
-Category/Focus: ${category}
-Language for Response: ${locale}
-
+Spread: ${spreadName}
+Category: ${category}
 ${userInfoSection}
-
 ${customPromptSection}
 
-Drawn Cards:
-------------
+Cards:
 ${cardDetails}
 
-Interpretation Format Required:
------------------------------
+Instructions:
 ${formatInstructions}
 
 ${analysisFocus}
@@ -266,40 +260,43 @@ export function generatePromptForCelticCross({ category, spread, customPrompt, l
   const spreadName = "Celtic Cross Spread";
   const persona = "You are 'Astral Tarot', a master Tarot reader providing deep, comprehensive insights using the traditional Celtic Cross.";
   const analysisFocus = "Provide a detailed, position-by-position analysis of the Celtic Cross spread, synthesizing the insights to illuminate the user's situation regarding the '${category}' category.";
+  
+  // Optimized format - daha kısa ve öz
   const format = `
-### 1. The Heart of the Matter / Present Situation (${spread["Current Situation"]?.name || "?"})
-[Analyze the central issue or current energy regarding '${category}'.]
+### 1. Present Situation (${spread["Current Situation"]?.name || "?"})
+[Core issue or current energy regarding '${category}'.]
 
 ### 2. The Challenge (${spread["Challenge"]?.name || "?"})
-[Analyze the immediate obstacle or conflicting force regarding '${category}'.]
+[Immediate obstacle or conflicting force regarding '${category}'.]
 
-### 3. The Foundation / Subconscious (${spread["Subconscious"]?.name || "?"})
-[Analyze the underlying factors, roots of the situation, or subconscious influences regarding '${category}'.]
+### 3. Foundation/Subconscious (${spread["Subconscious"]?.name || "?"})
+[Underlying factors or subconscious influences regarding '${category}'.]
 
-### 4. The Recent Past (${spread["Past"]?.name || "?"})
-[Analyze past events or influences that led to the present situation regarding '${category}'.]
+### 4. Recent Past (${spread["Past"]?.name || "?"})
+[Past events leading to present situation regarding '${category}'.]
 
-### 5. The Crown / Conscious Goals / Best Outcome (${spread["Possible Future"]?.name || "?"})
-[Analyze conscious goals, awareness, or the best possible outcome in the current circumstances regarding '${category}'.]
+### 5. Best Outcome (${spread["Possible Future"]?.name || "?"})
+[Conscious goals or best possible outcome regarding '${category}'.]
 
-### 6. The Near Future (${spread["Near Future"]?.name || "?"})
-[Analyze events or energies likely to emerge soon regarding '${category}'.]
+### 6. Near Future (${spread["Near Future"]?.name || "?"})
+[Events likely to emerge soon regarding '${category}'.]
 
-### 7. Your Stance / Personal Influence (${spread["Personal Stance"]?.name || "?"})
-[Analyze the user's own attitude, perspective, or influence on the situation regarding '${category}'.]
+### 7. Personal Stance (${spread["Personal Stance"]?.name || "?"})
+[User's attitude or influence on situation regarding '${category}'.]
 
-### 8. External Environment / Others' Influence (${spread["External Influences"]?.name || "?"})
-[Analyze external factors, people, or environmental influences regarding '${category}'.]
+### 8. External Influences (${spread["External Influences"]?.name || "?"})
+[External factors or people's influence regarding '${category}'.]
 
-### 9. Hopes and Fears (${spread["Hopes/Fears"]?.name || "?"})
-[Analyze the user's hopes, fears, or hidden expectations related to the situation regarding '${category}'.]
+### 9. Hopes/Fears (${spread["Hopes/Fears"]?.name || "?"})
+[User's hopes, fears, or hidden expectations regarding '${category}'.]
 
-### 10. The Final Outcome (${spread["Final Outcome"]?.name || "?"})
-[Analyze the likely long-term result or culmination of the situation based on the preceding cards regarding '${category}'.]
+### 10. Final Outcome (${spread["Final Outcome"]?.name || "?"})
+[Likely long-term result based on preceding cards regarding '${category}'.]
 
-### Overall Synthesis and Guidance
-[Summarize the key messages from the spread. Connect the positions and provide holistic guidance and actionable advice specifically for the '${category}' context. Address the custom prompt.]
+### Synthesis and Guidance
+[Summarize key messages. Connect positions and provide holistic guidance for '${category}'. Address custom prompt if provided.]
 `;
+  
   return buildTarotPrompt({ spreadName, category, spread, locale, userInfo, customPrompt, formatInstructions: format, personaDescription: persona, analysisFocus });
 }
 
