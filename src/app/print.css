@@ -1,0 +1,321 @@
+/* Print Styles for Tarot Reading Results */
+
+@media print {
+  /* Reset and base styles */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide unnecessary elements */
+  .no-print,
+  button,
+  .action-buttons,
+  .cosmic-background,
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .animate-gradient,
+  .animate-twinkle,
+  .group:hover,
+  .hover\:scale-110,
+  .hover\:-translate-y-2,
+  .hover\:shadow-xl,
+  .hover\:scale-105 {
+    display: none !important;
+  }
+
+  /* Page setup */
+  @page {
+    size: A4;
+    margin: 1.5cm;
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Body and container */
+  body {
+    background: white !important;
+    color: black !important;
+    font-family: 'Times New Roman', serif !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #reading-result {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    min-height: auto !important;
+  }
+
+  /* Header styles */
+  h1 {
+    font-size: 28pt !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    margin: 0 0 20pt 0 !important;
+    padding: 0 0 10pt 0 !important;
+    border-bottom: 3pt solid #333 !important;
+    color: #333 !important;
+    text-shadow: none !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+  }
+
+  h2 {
+    font-size: 20pt !important;
+    font-weight: bold !important;
+    margin: 20pt 0 15pt 0 !important;
+    padding: 0 0 8pt 0 !important;
+    border-bottom: 2pt solid #666 !important;
+    color: #333 !important;
+    text-shadow: none !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+  }
+
+  h3 {
+    font-size: 16pt !important;
+    font-weight: bold !important;
+    margin: 15pt 0 10pt 0 !important;
+    color: #333 !important;
+    text-shadow: none !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+  }
+
+  h4 {
+    font-size: 14pt !important;
+    font-weight: bold !important;
+    margin: 12pt 0 8pt 0 !important;
+    color: #333 !important;
+    text-shadow: none !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+  }
+
+  /* Paragraphs */
+  p {
+    font-size: 12pt !important;
+    line-height: 1.6 !important;
+    margin: 0 0 12pt 0 !important;
+    text-indent: 1.5em !important;
+    color: #333 !important;
+    text-shadow: none !important;
+  }
+
+  /* Lists */
+  ul, ol {
+    margin: 12pt 0 !important;
+    padding-left: 20pt !important;
+  }
+
+  li {
+    font-size: 12pt !important;
+    line-height: 1.6 !important;
+    margin: 6pt 0 !important;
+    color: #333 !important;
+    text-shadow: none !important;
+  }
+
+  /* Strong and emphasis */
+  strong {
+    font-weight: bold !important;
+    color: #333 !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  em {
+    font-style: italic !important;
+    color: #333 !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Blockquotes */
+  blockquote {
+    border-left: 4pt solid #333 !important;
+    padding: 10pt 0 10pt 15pt !important;
+    margin: 15pt 0 !important;
+    background: #f9f9f9 !important;
+    font-style: italic !important;
+    color: #333 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Code blocks */
+  code {
+    font-family: 'Courier New', monospace !important;
+    font-size: 11pt !important;
+    background: #f5f5f5 !important;
+    padding: 2pt 4pt !important;
+    border: 1pt solid #ddd !important;
+    color: #333 !important;
+    text-shadow: none !important;
+  }
+
+  pre {
+    background: #f5f5f5 !important;
+    padding: 10pt !important;
+    margin: 15pt 0 !important;
+    border: 1pt solid #ddd !important;
+    overflow: visible !important;
+    white-space: pre-wrap !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 11pt !important;
+    color: #333 !important;
+    text-shadow: none !important;
+  }
+
+  /* Cards section */
+  .cards-grid {
+    page-break-inside: avoid !important;
+    margin: 20pt 0 !important;
+  }
+
+  .card-container {
+    display: inline-block !important;
+    margin: 10pt !important;
+    text-align: center !important;
+    page-break-inside: avoid !important;
+  }
+
+  .card-image {
+    width: 80pt !important;
+    height: 120pt !important;
+    border: 2pt solid #333 !important;
+    border-radius: 8pt !important;
+    margin: 0 auto 8pt auto !important;
+    display: block !important;
+  }
+
+  .card-position {
+    font-size: 10pt !important;
+    font-weight: bold !important;
+    background: #333 !important;
+    color: white !important;
+    padding: 4pt 8pt !important;
+    border-radius: 12pt !important;
+    margin: 0 auto 4pt auto !important;
+    display: inline-block !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  .card-name {
+    font-size: 10pt !important;
+    font-weight: bold !important;
+    color: #333 !important;
+    text-shadow: none !important;
+  }
+
+  /* AI Interpretation section */
+  .ai-interpretation {
+    page-break-inside: avoid !important;
+    margin: 20pt 0 !important;
+    padding: 15pt !important;
+    border: 2pt solid #333 !important;
+    border-radius: 8pt !important;
+    background: #f9f9f9 !important;
+  }
+
+  /* Category and spread info */
+  .reading-info {
+    text-align: center !important;
+    margin: 15pt 0 !important;
+    font-size: 11pt !important;
+    color: #666 !important;
+  }
+
+  .reading-info span {
+    display: inline-block !important;
+    margin: 0 10pt !important;
+    padding: 4pt 8pt !important;
+    background: #f0f0f0 !important;
+    border: 1pt solid #ccc !important;
+    border-radius: 4pt !important;
+  }
+
+  /* Disclaimer */
+  .disclaimer {
+    text-align: center !important;
+    margin: 20pt 0 0 0 !important;
+    padding: 10pt !important;
+    font-size: 10pt !important;
+    color: #666 !important;
+    border-top: 1pt solid #ccc !important;
+    font-style: italic !important;
+  }
+
+  /* Page breaks */
+  .page-break {
+    page-break-before: always !important;
+  }
+
+  .avoid-break {
+    page-break-inside: avoid !important;
+  }
+
+  /* Footer */
+  .print-footer {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    text-align: center !important;
+    font-size: 9pt !important;
+    color: #999 !important;
+    padding: 5pt 0 !important;
+    border-top: 1pt solid #ccc !important;
+  }
+
+  /* Hide background images and gradients */
+  * {
+    background-image: none !important;
+    background: none !important;
+  }
+
+  /* Ensure text is readable */
+  * {
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Optimize for black and white printing */
+  * {
+    filter: grayscale(0%) !important;
+  }
+}
+
+/* Print preview styles (for screen) */
+.print-preview {
+  background: white !important;
+  color: black !important;
+  padding: 20pt !important;
+  margin: 20pt !important;
+  border: 1pt solid #ccc !important;
+  box-shadow: 0 0 10pt rgba(0,0,0,0.1) !important;
+  max-width: 21cm !important;
+  min-height: 29.7cm !important;
+  font-family: 'Times New Roman', serif !important;
+}
+
+.print-preview .no-print {
+  display: none !important;
+} 

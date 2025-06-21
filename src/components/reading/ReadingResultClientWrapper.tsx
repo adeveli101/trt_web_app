@@ -3,6 +3,7 @@ import React, { useEffect, useState, useCallback, useMemo, useRef } from "react"
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import TarotCardSheet from "./TarotCardSheet";
+import PrintFunctions from "./PrintFunctions";
 import {
   mapSelectedCardsToSpread,
   generatePromptForCelticCross,
@@ -310,7 +311,7 @@ const CardImage = ({ card, position, translations, category }: { card: any; posi
         onClick={() => setShowSheet(true)}
       >
         {/* Kart Container */}
-        <div className="relative w-28 h-42 sm:w-32 sm:h-48 md:w-36 md:h-54 rounded-xl overflow-hidden shadow-2xl transform transition-all duration-500"
+        <div className="relative w-28 h-42 sm:w-32 sm:h-48 md:w-36 md:h-54 rounded-xl overflow-hidden shadow-2xl transform transition-all duration-500 card-image"
           style={{
             boxShadow: `0 15px 40px ${colors.primary}30, 0 0 30px ${colors.primary}20, 0 8px 25px rgba(0,0,0,0.3)`
           }}>
@@ -334,14 +335,14 @@ const CardImage = ({ card, position, translations, category }: { card: any; posi
           />
 
           {/* Hover overlay - Geliştirilmiş */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-2 sm:pb-3">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-2 sm:pb-3 no-print">
             <div className="text-white text-xs font-bold bg-black/80 px-3 py-2 rounded-full border border-white/20 shadow-lg">
               {translations.reading_card_click_details || "Click for Details"}
             </div>
           </div>
 
           {/* Glow effect */}
-          <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 no-print"
             style={{
               background: `radial-gradient(circle at center, ${colors.primary}30 0%, transparent 70%)`,
               boxShadow: `0 0 50px ${colors.primary}40`
@@ -660,7 +661,7 @@ export default function ReadingResultClientWrapper({ locale, category, spread, t
         </div>
 
         {/* Cards Grid - Staggered Animation */}
-        <div className="mb-10 sm:mb-16">
+        <div className="mb-10 sm:mb-16 cards-grid">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 text-center animate-fade-in-up drop-shadow-lg" 
             style={{ animationDelay: '0.2s', textShadow: `0 0 20px ${colors.secondary}30` }}>
             {translations.reading_selected_cards || "Selected Cards"}
@@ -670,7 +671,7 @@ export default function ReadingResultClientWrapper({ locale, category, spread, t
             {Object.entries(spreadMap).map(([position, card], index) => (
               <div 
                 key={position}
-                className="animate-fade-in-up flex justify-center"
+                className="animate-fade-in-up flex justify-center card-container"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardImage
@@ -685,61 +686,26 @@ export default function ReadingResultClientWrapper({ locale, category, spread, t
         </div>
 
         {/* AI Sonuç Bölümü */}
-        <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-md rounded-2xl sm:rounded-3xl p-6 sm:p-8 mb-8 sm:mb-12 border border-gray-600/30 shadow-2xl">
+        <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-md rounded-2xl sm:rounded-3xl p-6 sm:p-8 mb-8 sm:mb-12 border border-gray-600/30 shadow-2xl ai-interpretation">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-8 gap-4">
             <h3 className="text-xl sm:text-2xl font-bold text-accent-gold flex items-center gap-3 drop-shadow-lg"
               style={{ textShadow: `0 0 20px ${colors.primary}40` }}>
               <span className="text-2xl sm:text-3xl">🔮</span>
               {translations.reading_ai_interpretation || "AI Tarot Interpretation"}
             </h3>
-            
-            {/* Action Buttons */}
-            <div className="flex items-center justify-center sm:justify-end gap-3">
-              {/* Print Button */}
-              <button
-                onClick={() => window.print()}
-                className="p-3 rounded-xl bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white text-sm font-medium shadow-lg hover:shadow-xl hover:scale-105"
-                title={translations.reading_print || "Print"}
-              >
-                🖨️
-              </button>
-              
-              {/* PDF Export */}
-              <button
-                onClick={() => {
-                  // PDF export functionality
-                  const element = document.getElementById('reading-result');
-                  if (element) {
-                    window.print();
-                  }
-                }}
-                className="p-3 rounded-xl bg-red-600 hover:bg-red-700 transition-all duration-300 text-white text-sm font-medium shadow-lg hover:shadow-xl hover:scale-105"
-                title={translations.reading_export_pdf || "Download PDF"}
-              >
-                📄
-              </button>
-              
-              {/* Share Button */}
-              <button
-                onClick={() => {
-                  if (navigator.share) {
-                    navigator.share({
-                      title: translations.reading_share_title || 'My Tarot Reading',
-                      text: translations.reading_share_text || 'I am sharing my AI-interpreted tarot reading result!',
-                      url: window.location.href
-                    });
-                  } else {
-                    navigator.clipboard.writeText(window.location.href);
-                    alert(translations.reading_link_copied || 'Link copied!');
-                  }
-                }}
-                className="p-3 rounded-xl bg-green-600 hover:bg-green-700 transition-all duration-300 text-white text-sm font-medium shadow-lg hover:shadow-xl hover:scale-105"
-                title={translations.reading_share || "Share"}
-              >
-                📤
-              </button>
-            </div>
           </div>
+
+          {/* Print Functions */}
+          <PrintFunctions
+            translations={translations}
+            category={category}
+            spread={spread}
+            selectedCards={selectedCards}
+            spreadMap={spreadMap}
+            aiResult={aiResult}
+            onPrint={() => console.log('Print completed')}
+            onPDFDownload={() => console.log('PDF downloaded')}
+          />
           
           <div className="prose prose-invert max-w-none prose-sm sm:prose-base lg:prose-lg">
             <CustomMarkdown category={category}>

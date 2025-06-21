@@ -3,10 +3,13 @@
 // Tüm sayfalar ve dil tabanlı layout'lar bu layout'un içinde render edilir.
 
 import { ReactNode } from 'react';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 
 // Global CSS dosyalarınızı buraya import edin.
 // Bu CSS dosyaları tüm uygulamayı etkileyecektir.
 import './globals.css';
+import './print.css';
 import './theme.css';
 
 // Next.js'in font optimizasyonunu kullanmak için Geist fontlarını içe aktarın.
