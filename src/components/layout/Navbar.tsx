@@ -17,7 +17,7 @@ export default function Navbar({ headerVisible }: { headerVisible: boolean }) {
   const router = useRouter();
   const params = useParams();
   const locale = params?.locale || 'en';
-  const t = useTranslations('common');
+  const t = useTranslations();
 
   const [active, setActive] = useState('');
   const [hasMounted, setHasMounted] = useState(false); // Yeni state

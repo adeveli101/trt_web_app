@@ -4,7 +4,7 @@ import StartJourneyButton from "../ui/StartJourneyButton";
 import { motion } from "framer-motion";
 
 export default function IntroSection({ howItWorksVisible }: { howItWorksVisible?: boolean }) {
-  const t = useTranslations('common');
+  const t = useTranslations();
   return (
     <>
       <section className="relative flex flex-col items-center justify-center min-h-screen px-4 py-0 md:py-8 bg-gradient-to-br from-[var(--primary-color)] via-[#3a1053] to-[var(--bg-color)] overflow-hidden">

@@ -6,9 +6,8 @@ import TarotCardSingle from './TarotCardSingle';
 import TarotCardSheet from './TarotCardSheet';
 import UnveilButton from './UnveilButton';
 import { TarotCard } from '@/lib/tarotTypes';
-import { useSwipeable } from 'react-swipeable';
+
 import { spreadPositions, mapSelectedCardsToSpread, getTarotCardImage } from '@/lib/tarotLogic';
-import spreadsData from '@/lib/data/spreads.json';
 import { useRouter } from "next/navigation";
 
 interface OverviewPageClientWrapperProps {
@@ -129,8 +128,8 @@ export default function OverviewPageClientWrapper({ locale, category, spread, tr
               {translations.reading_step_overview}
             </h2>
           </div>
-          <div className="w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-            <div className="col-span-full w-full flex justify-center mb-4">
+          <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8 justify-items-center">
+            <div className="col-span-full w-full flex justify-center mb-6">
               <h3 className="text-lg md:text-xl font-semibold text-accent-gold text-center" style={{ fontFamily: 'Cinzel Decorative, serif' }}>
                 {translations[`spread_${spread}_title`] || spreadObj?.title || spread}
               </h3>
@@ -138,61 +137,75 @@ export default function OverviewPageClientWrapper({ locale, category, spread, tr
             {positions.map((position, index) => {
               const card = spreadMap[position];
               if (!card) return null;
+              
+              // Kart tipine göre bilgileri belirle
+              const isMajorArcana = card.arcana === 'major';
+              const isMinorArcana = card.arcana === 'minor';
+              
               return (
-                <div key={card.name} className="bg-gradient-to-br from-[#2a1746]/90 to-[#3a1053]/90 rounded-xl shadow-lg p-4 border border-accent-gold/20 transition-all duration-200 transform hover:scale-105 hover:shadow-[0_0_16px_2px_rgba(255,215,0,0.4)] hover:border-accent-gold/80 hover:bg-gradient-to-br hover:from-[#3a1053]/95 hover:to-yellow-900/60 cursor-pointer" style={{ willChange: 'transform, box-shadow, border-color, background' }} onClick={() => { setSheetCard(card); setSheetOpen(true); }} tabIndex={0} role="button" aria-label={`Show details for ${card.name}`}> 
-                  <div className="flex flex-row items-center gap-3 mb-3">
-                    {/* Minik Kart Resmi */}
-                    <img
-                      src={getTarotCardImage(card)}
-                      alt={card.name}
-                      className="w-8 h-12 rounded-md border border-accent-gold/40 bg-white object-cover mr-2"
-                      draggable={false}
-                    />
-                    {/* Kart Başlığı ve İsim */}
-                    <div className="flex flex-col justify-center">
-                      <h3 className="text-lg font-bold text-accent-gold leading-tight" style={{ fontFamily: 'Cinzel Decorative, serif' }}>
-                        {position}
-                      </h3>
-                      <h4 className="text-sm text-white/90 leading-tight">{card.name}</h4>
+                <div key={card.name} className="group relative w-full max-w-xs bg-gradient-to-br from-[#1a0f2e]/95 to-[#2d1b4e]/95 rounded-2xl shadow-xl border border-accent-gold/30 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_5px_rgba(255,215,0,0.3)] hover:border-accent-gold/60 cursor-pointer overflow-hidden" style={{ willChange: 'transform, box-shadow, border-color' }} onClick={() => { setSheetCard(card); setSheetOpen(true); }} tabIndex={0} role="button" aria-label={`Show details for ${card.name}`}> 
+                  {/* Üst kısım - Kart resmi ve başlık */}
+                  <div className="relative p-4 pb-2">
+                    {/* Arka plan efekti */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent-gold/5 to-transparent rounded-t-2xl"></div>
+                    
+                    {/* Kart resmi ve pozisyon */}
+                    <div className="relative flex items-center gap-3 mb-3">
+                      <div className="relative">
+                        <img
+                          src={getTarotCardImage(card)}
+                          alt={card.name}
+                          className="w-12 h-18 rounded-lg border-2 border-accent-gold/50 bg-white object-cover shadow-lg group-hover:border-accent-gold/80 transition-colors duration-300"
+                          draggable={false}
+                        />
+                        {/* Kart tipi badge */}
+                        <div className="absolute -top-1 -right-1">
+                          {isMajorArcana ? (
+                            <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-600/90 text-white border border-purple-400 shadow-sm">
+                              MAJOR
+                            </span>
+                          ) : isMinorArcana && card.suit ? (
+                            <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-600/90 text-white border border-blue-400 shadow-sm">
+                              {card.suit.toUpperCase()}
+                            </span>
+                          ) : null}
+                        </div>
+                      </div>
+                      
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm font-bold text-accent-gold leading-tight mb-1" style={{ fontFamily: 'Cinzel Decorative, serif' }}>
+                          {position}
+                        </h3>
+                        <h4 className="text-xs text-white/90 leading-tight truncate">{card.name}</h4>
+                      </div>
                     </div>
                   </div>
-                  <div className="space-y-3">
-                    {card.fortune_telling && card.fortune_telling.length > 0 && (
-                      <div className="bg-black/30 rounded-lg p-2">
-                        <h5 className="text-accent-gold text-xs font-semibold mb-1">Fortune</h5>
-                        <ul className="text-white/80 text-xs leading-relaxed space-y-1">
-                          {card.fortune_telling.map((fortune, i) => (
-                            <li key={i} className="flex items-start gap-1"><span className="text-accent-gold">★</span><span>{fortune}</span></li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                    {card.meanings?.light && card.meanings.light.length > 0 && (
-                      <div className="bg-black/30 rounded-lg p-2">
-                        <h5 className="text-accent-gold text-xs font-semibold mb-1">Light</h5>
-                        <ul className="text-white/80 text-xs leading-relaxed space-y-1">
-                          {card.meanings.light.map((light, i) => (
-                            <li key={i} className="flex items-start gap-1"><span className="text-accent-gold">★</span><span>{light}</span></li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                  
+                  {/* Alt kısım - Bilgiler */}
+                  <div className="px-4 pb-4 space-y-2">
+                    {/* Keywords - Kompakt */}
                     {card.keywords && card.keywords.length > 0 && (
-                      <div className="bg-black/30 rounded-lg p-2">
-                        <h5 className="text-accent-gold text-xs font-semibold mb-1">Keywords</h5>
-                        <div className="flex flex-wrap gap-1 mt-1">
+                      <div className="bg-black/40 rounded-lg p-2 border border-accent-gold/20">
+                        <h5 className="text-accent-gold text-[10px] font-bold mb-1.5 uppercase tracking-wide">Keywords</h5>
+                        <div className="flex flex-wrap gap-1 justify-center">
                           {card.keywords.map((keyword, i) => {
+                            // Farklı renk kombinasyonları
                             const chipColors = [
-                              'bg-accent-gold/20 text-accent-gold border-accent-gold',
-                              'bg-purple-400/20 text-purple-200 border-purple-400',
-                              'bg-pink-400/20 text-pink-200 border-pink-400',
-                              'bg-blue-400/20 text-blue-200 border-blue-400',
+                              'bg-gradient-to-r from-purple-500/20 to-purple-600/20 text-purple-200 border-purple-400/50 shadow-sm shadow-purple-500/20',
+                              'bg-gradient-to-r from-blue-500/20 to-blue-600/20 text-blue-200 border-blue-400/50 shadow-sm shadow-blue-500/20',
+                              'bg-gradient-to-r from-green-500/20 to-green-600/20 text-green-200 border-green-400/50 shadow-sm shadow-green-500/20',
+                              'bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 text-yellow-200 border-yellow-400/50 shadow-sm shadow-yellow-500/20',
+                              'bg-gradient-to-r from-pink-500/20 to-pink-600/20 text-pink-200 border-pink-400/50 shadow-sm shadow-pink-500/20',
+                              'bg-gradient-to-r from-indigo-500/20 to-indigo-600/20 text-indigo-200 border-indigo-400/50 shadow-sm shadow-indigo-500/20',
+                              'bg-gradient-to-r from-red-500/20 to-red-600/20 text-red-200 border-red-400/50 shadow-sm shadow-red-500/20',
+                              'bg-gradient-to-r from-teal-500/20 to-teal-600/20 text-teal-200 border-teal-400/50 shadow-sm shadow-teal-500/20',
                             ];
-                            const color = chipColors[i % chipColors.length];
+                            const colorClass = chipColors[i % chipColors.length];
+                            
                             return (
                               <span
                                 key={i}
-                                className={`px-2 py-0.5 rounded-full border text-xs font-semibold shadow-sm ${color}`}
+                                className={`px-2 py-1 rounded-lg border text-[10px] font-bold tracking-wide transition-all duration-200 hover:scale-105 hover:shadow-lg ${colorClass}`}
                               >
                                 {keyword}
                               </span>
@@ -201,7 +214,63 @@ export default function OverviewPageClientWrapper({ locale, category, spread, tr
                         </div>
                       </div>
                     )}
+                    
+                    {/* Özel bilgiler - Kompakt */}
+                    <div className="space-y-1.5">
+                      {/* Major Arcana için özel bilgiler */}
+                      {isMajorArcana && card.Archetype && (
+                        <div className="bg-purple-900/30 rounded-lg p-2 border border-purple-500/30">
+                          <h5 className="text-purple-300 text-[10px] font-bold mb-1 uppercase tracking-wide">Archetype</h5>
+                          <p className="text-white/80 text-[10px] leading-tight">{card.Archetype}</p>
+                        </div>
+                      )}
+                      
+                      {/* Element - Tüm kartlar için */}
+                      {card.Elemental && (
+                        <div className="bg-blue-900/30 rounded-lg p-2 border border-blue-500/30">
+                          <h5 className="text-blue-300 text-[10px] font-bold mb-1 uppercase tracking-wide">Element</h5>
+                          <p className="text-white/80 text-[10px] leading-tight">{card.Elemental}</p>
+                        </div>
+                      )}
+                      
+                      {/* Numerology - Tüm kartlar için */}
+                      {card.Numerology && (
+                        <div className="bg-green-900/30 rounded-lg p-2 border border-green-500/30">
+                          <h5 className="text-green-300 text-[10px] font-bold mb-1 uppercase tracking-wide">Number</h5>
+                          <p className="text-white/80 text-[10px] leading-tight">{card.Numerology}</p>
+                        </div>
+                      )}
+                      
+                      {/* Mythical/Spiritual - Tüm kartlar için */}
+                      {card["Mythical/Spiritual"] && (
+                        <div className="bg-orange-900/30 rounded-lg p-2 border border-orange-500/30">
+                          <h5 className="text-orange-300 text-[10px] font-bold mb-1 uppercase tracking-wide">Mythical</h5>
+                          <p className="text-white/80 text-[10px] leading-tight line-clamp-2">{card["Mythical/Spiritual"]}</p>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Fortune Telling - Kompakt */}
+                    {card.fortune_telling && card.fortune_telling.length > 0 && (
+                      <div className="bg-gradient-to-r from-yellow-900/30 to-orange-900/30 rounded-lg p-2 border border-yellow-500/30">
+                        <h5 className="text-yellow-300 text-[10px] font-bold mb-1 uppercase tracking-wide">Fortune</h5>
+                        <p className="text-white/80 text-[10px] leading-tight line-clamp-2">
+                          {card.fortune_telling[0]}
+                          {card.fortune_telling.length > 1 && "..."}
+                        </p>
+                      </div>
+                    )}
+                    
+                    {/* Click for details hint */}
+                    <div className="text-center pt-2">
+                      <span className="text-accent-gold/70 text-[9px] font-medium italic">
+                        {translations.reading_card_click_for_details}
+                      </span>
+                    </div>
                   </div>
+                  
+                  {/* Hover efekti */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent-gold/0 to-accent-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
               );
             })}

@@ -1,5 +1,6 @@
 export interface TarotCard {
   name: string;
+  number?: string;
   keywords: string[];
   meanings: {
     light: string[];
@@ -18,6 +19,22 @@ export interface TarotCard {
 }
 
 export interface SpreadType {
-  name: string;
+  key: string;
+  label: string;
+  desc: string;
+  image: string;
   cardCount: number;
+  isPopular: boolean;
+  isNew: boolean;
+}
+
+export interface CategoryType {
+  key: string;
+  name: string;
+  label: string;
+  insight: string;
+  image: string;
+  isPopular: boolean;
+  isPremium: boolean;
+  isNew: boolean;
 } 

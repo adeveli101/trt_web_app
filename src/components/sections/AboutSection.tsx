@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import SectionHeading from "../ui/SectionHeading";
 
 export default function AboutSection({ sectionClass }: { sectionClass: string }) {
-  const t = useTranslations('common');
+  const t = useTranslations();
   return (
     <section id="about" className={sectionClass}>
       <div className="max-w-3xl mx-auto">

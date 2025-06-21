@@ -11,7 +11,7 @@ const spreads = [
 ];
 
 export default function PopularSpreadsSection() {
-  const t = useTranslations('common');
+  const t = useTranslations();
   return (
     <>
       <section id="popular-spreads" className="relative py-16 md:py-24 bg-gradient-to-b from-transparent to-[var(--bg-color)] flex flex-col items-center">

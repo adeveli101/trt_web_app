@@ -6,7 +6,7 @@ import { spreadCategoryMap } from "@/lib/data/spreadCategoryMap";
 import CosmicBackground from "@/components/layout/CosmicBackground";
 
 export default function CategoryPage({ category, locale, categoriesData, onSelect }: { category: string, locale: string, categoriesData: any[], onSelect?: (spreadKey: string) => void }) {
-  const t = useTranslations('common');
+  const t = useTranslations();
   const categoryObj = categoriesData.find((cat: any) => cat.key === category);
   if (!categoryObj) {
     return <div className="min-h-screen flex items-center justify-center text-red-600 font-bold">{t('category_not_found') || 'Category not found.'}</div>;

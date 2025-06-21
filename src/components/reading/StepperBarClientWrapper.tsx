@@ -13,7 +13,7 @@ export default function StepperBarClientWrapper({ categorySelected, category, lo
 }) {
   const router = useRouter();
   const pathname = usePathname();
-  const t = useTranslations('common');
+  const t = useTranslations();
 
   const defaultSteps = [
     {

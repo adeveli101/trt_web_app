@@ -8,7 +8,7 @@ interface FeaturesSectionProps {
 }
 
 export default function FeaturesSection({ sectionClass }: FeaturesSectionProps) {
-  const t = useTranslations('common');
+  const t = useTranslations();
   const cardAnim = (visible: boolean) =>
     `transition-all duration-700 ease-out opacity-100 translate-y-0 scale-100`;
 
@@ -50,4 +50,4 @@ export default function FeaturesSection({ sectionClass }: FeaturesSectionProps) 
       </div>
     </section>
   );
-} 
+}

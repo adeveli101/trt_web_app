@@ -5,7 +5,7 @@ import { StepSeparatorSVG } from "../ui/StepSeparatorSVG";
 import { useTranslations } from "next-intl";
 
 export default function StepperBar({ step, onStepChange, categorySelected, category, steps: stepsProp }: { step: number; onStepChange: (step: 0 | 1 | 2 | 3) => void, categorySelected?: boolean, category?: string, steps?: any[] }) {
-  const t = useTranslations('common');
+  const t = useTranslations();
   const defaultSteps = [
     {
       label: t('reading_step_category'),
@@ -77,8 +77,7 @@ export default function StepperBar({ step, onStepChange, categorySelected, categ
                     aria-current={step === i ? "step" : undefined}
                   >
                     {step === i && (
-                      <style>{`
-                        @keyframes borderDarkRed {
+                      <style>{`                        @keyframes borderDarkRed {
                           0% { border-image: linear-gradient(120deg, #2c0018, #6a003a, #000) 1; }
                           50% { border-image: linear-gradient(240deg, #000, #6a003a, #2c0018) 1; }
                           100% { border-image: linear-gradient(120deg, #2c0018, #6a003a, #000) 1; }

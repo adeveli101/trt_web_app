@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import CardSelectionArea from './CardSelectionArea';
 import { TarotCard } from "../../lib/tarotTypes";
 import { spreadPositions } from "@/lib/tarotLogic";
 import tarotCardsData from "@/lib/data/tarot_cards_en.json";

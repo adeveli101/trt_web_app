@@ -32,8 +32,6 @@ export default async function getRequestConfig({ requestLocale }: { requestLocal
 
     return {
         locale,
-        messages: {
-            common: loadedMessages,
-        }
+        messages: loadedMessages
     };
 }

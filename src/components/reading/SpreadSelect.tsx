@@ -9,24 +9,9 @@ import { useParams } from "next/navigation";
 import { spreadCategoryMap } from "@/lib/data/spreadCategoryMap";
 import SectionHeading from "@/components/ui/SectionHeading";
 import CosmicBackground from "@/components/layout/CosmicBackground";
+import spreadsData from "@/lib/data/spreads.json";
 
-const allSpreads: SpreadType[] = [
-  { name: "singleCard", cardCount: 1 },
-  { name: "pastPresentFuture", cardCount: 3 },
-  { name: "problemSolution", cardCount: 3 },
-  { name: "fiveCardPath", cardCount: 5 },
-  { name: "relationshipSpread", cardCount: 7 },
-  { name: "celticCross", cardCount: 10 },
-  { name: "yearlySpread", cardCount: 13 },
-  { name: "mindBodySpirit", cardCount: 3 },
-  { name: "astroLogicalCross", cardCount: 5 },
-  { name: "brokenHeart", cardCount: 5 },
-  { name: "dreamInterpretation", cardCount: 3 },
-  { name: "horseshoeSpread", cardCount: 7 },
-  { name: "careerPathSpread", cardCount: 5 },
-  { name: "fullMoonSpread", cardCount: 6 },
-  { name: "categoryReading", cardCount: 3 },
-];
+const allSpreads: SpreadType[] = spreadsData as SpreadType[];
 
 const spreadDetails: Record<string, { title: string; desc: string; longDesc: string; positions: string[] }> = {
   singleCard: {
@@ -126,11 +111,11 @@ export default function SpreadSelect({ category, onSelect, onBack }: { category:
   const t = useTranslations('common');
   const params = useParams();
   const locale = params.locale as string;
-  const spreads = allSpreads.filter(s => spreadCategoryMap[category]?.includes(s.name));
+  const spreads = allSpreads.filter(s => spreadCategoryMap[category]?.includes(s.key));
 
   function handleSpreadClick(spread: SpreadType) {
     // Go to prompt step, not cards
-    window.location.href = `/${locale}/reading/category/${category}/spread/${spread.name}`;
+    window.location.href = `/${locale}/reading/category/${category}/spread/${spread.key}`;
   }
 
   return (
@@ -141,7 +126,7 @@ export default function SpreadSelect({ category, onSelect, onBack }: { category:
       </div>
       <div className="flex-1 w-full flex flex-col justify-center px-0 relative z-10">
         <div className="flex flex-col items-center mt-8 w-full">
-          <SectionHeading className="mb-8 text-accent-gold drop-shadow-lg" font="cinzel">
+          <SectionHeading className="mb-8 text-accent-gold drop-shadow-lg">
             {t('reading_choose_spread')}
           </SectionHeading>
           <div className="mb-4 w-full px-0 md:px-8 mx-auto">
@@ -161,24 +146,24 @@ export default function SpreadSelect({ category, onSelect, onBack }: { category:
                 ) : (
                   spreads.map((spread, i) => (
                     <button
-                      key={spread.name}
+                      key={spread.key}
                       onClick={() => handleSpreadClick(spread)}
-                      aria-label={t(`spread_${spread.name}_title`)}
+                      aria-label={t(`spread_${spread.key}_title`)}
                       className="flex flex-col items-center rounded-2xl overflow-hidden shadow-lg border border-[var(--accent-color)] group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold p-0 bg-gradient-to-br from-[#180026] via-[#3B006A] to-[#7A2062] min-h-[220px] h-full min-w-[200px] w-[80vw] max-w-[260px] snap-center relative transition-all duration-300 hover:border-accent-gold hover:shadow-2xl font-cabin"
                       style={{ fontFamily: 'Cabin, Cinzel Decorative, sans-serif' }}
                     >
                       <div className="w-full aspect-[16/7] min-h-[180px] relative bg-[#1a0026]">
                         <img
-                          src={`/images/spreads/${spread.name}.png`}
-                          alt={t(`spread_${spread.name}_title`)}
+                          src={`/images/spreads/${spread.key}.png`}
+                          alt={t(`spread_${spread.key}_title`)}
                           className="object-contain w-full h-full transition-transform duration-300 group-hover:scale-105"
                           loading="lazy"
                         />
                         <div className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-accent-gold group-hover:shadow-gold transition-all duration-300 z-10" />
                       </div>
                       <div className="w-full flex flex-col items-start px-4 py-3">
-                        <h2 className="text-xl xl:text-2xl font-bold text-accent-gold mb-1" style={{ fontFamily: 'Cinzel Decorative, serif' }}>{t(`spread_${spread.name}_title`)}</h2>
-                        <span className="text-sm xl:text-base text-gray-300 text-left leading-snug" style={{ fontFamily: 'Cabin, sans-serif' }}>{t(`spread_${spread.name}_desc`)}</span>
+                        <h2 className="text-xl xl:text-2xl font-bold text-accent-gold mb-1" style={{ fontFamily: 'Cinzel Decorative, serif' }}>{t(`spread_${spread.key}_title`)}</h2>
+                        <span className="text-sm xl:text-base text-gray-300 text-left leading-snug" style={{ fontFamily: 'Cabin, sans-serif' }}>{t(`spread_${spread.key}_desc`)}</span>
                       </div>
                     </button>
                   ))
@@ -194,24 +179,24 @@ export default function SpreadSelect({ category, onSelect, onBack }: { category:
               ) : (
                 spreads.map((spread, i) => (
                   <button
-                    key={spread.name}
+                    key={spread.key}
                     onClick={() => handleSpreadClick(spread)}
-                    aria-label={t(`spread_${spread.name}_title`)}
+                    aria-label={t(`spread_${spread.key}_title`)}
                     className="flex flex-col items-center rounded-2xl overflow-hidden shadow-lg border border-[var(--accent-color)] group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold p-0 bg-gradient-to-br from-[#180026] via-[#3B006A] to-[#7A2062] min-h-[220px] h-full w-full snap-center relative transition-all duration-300 hover:border-accent-gold hover:shadow-2xl font-cabin"
                     style={{ fontFamily: 'Cabin, Cinzel Decorative, sans-serif' }}
                   >
                     <div className="w-full aspect-[16/7] min-h-[180px] relative bg-[#1a0026]">
                       <img
-                        src={`/images/spreads/${spread.name}.png`}
-                        alt={t(`spread_${spread.name}_title`)}
+                        src={`/images/spreads/${spread.key}.png`}
+                        alt={t(`spread_${spread.key}_title`)}
                         className="object-contain w-full h-full transition-transform duration-300 group-hover:scale-105"
                         loading="lazy"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-accent-gold group-hover:shadow-gold transition-all duration-300 z-10" />
                     </div>
                     <div className="w-full flex flex-col items-start px-4 py-3">
-                      <h2 className="text-xl xl:text-2xl font-bold text-accent-gold mb-1" style={{ fontFamily: 'Cinzel Decorative, serif' }}>{t(`spread_${spread.name}_title`)}</h2>
-                      <span className="text-sm xl:text-base text-gray-300 text-left leading-snug" style={{ fontFamily: 'Cabin, sans-serif' }}>{t(`spread_${spread.name}_desc`)}</span>
+                      <h2 className="text-xl xl:text-2xl font-bold text-accent-gold mb-1" style={{ fontFamily: 'Cinzel Decorative, serif' }}>{t(`spread_${spread.key}_title`)}</h2>
+                      <span className="text-sm xl:text-base text-gray-300 text-left leading-snug" style={{ fontFamily: 'Cabin, sans-serif' }}>{t(`spread_${spread.key}_desc`)}</span>
                     </div>
                   </button>
                 ))
@@ -232,22 +217,22 @@ export default function SpreadSelect({ category, onSelect, onBack }: { category:
               &times;
             </button>
             <img
-              src={`/images/spreads/${selectedSpread.name}.png`}
-              alt={t(`spread_${selectedSpread.name}_title`)}
+              src={`/images/spreads/${selectedSpread.key}.png`}
+              alt={t(`spread_${selectedSpread.key}_title`)}
               className="w-full max-w-[420px] aspect-[19/9] object-contain mb-4 rounded-xl shadow-lg border border-accent-gold bg-[#1a0026]"
             />
-            <h3 className="text-2xl font-bold mb-2 text-accent-gold text-center drop-shadow-lg">{t(`spread_${selectedSpread.name}_title`)}</h3>
-            <p className="text-base text-gray-300 mb-4 text-center">{t(`spread_${selectedSpread.name}_desc`)}</p>
+            <h3 className="text-2xl font-bold mb-2 text-accent-gold text-center drop-shadow-lg">{t(`spread_${selectedSpread.key}_title`)}</h3>
+            <p className="text-base text-gray-300 mb-4 text-center">{t(`spread_${selectedSpread.key}_desc`)}</p>
             <div className="w-full mb-2">
               <span className="block text-sm font-semibold text-accent-gold mb-1">{t('reading_spread_modal_card_positions')}</span>
               <ul className="list-disc list-inside text-sm text-gray-400">
-                {(t.raw(`spread_${selectedSpread.name}_positions`) || []).map((pos: string, idx: number) => (
+                {(t.raw(`spread_${selectedSpread.key}_positions`) || []).map((pos: string, idx: number) => (
                   <li key={idx}>{pos}</li>
                 ))}
               </ul>
             </div>
             <div className="w-full mt-2">
-              <span className="block text-sm text-gray-400 text-center">{t(`spread_${selectedSpread.name}_longDesc`)}</span>
+              <span className="block text-sm text-gray-400 text-center">{t(`spread_${selectedSpread.key}_longDesc`)}</span>
             </div>
           </div>
         </div>

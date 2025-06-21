@@ -14,7 +14,7 @@ export const spreadPositions: Record<string, string[]> = {
     "Current Situation", "Challenge", "Subconscious", "Past", "Possible Future", "Near Future", "Personal Stance", "External Influences", "Hopes/Fears", "Final Outcome"
   ],
   yearlySpread: [
-    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "Yearly Summary"
+    "Yearly Summary", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
   ],
   mindBodySpirit: ["Mind", "Body", "Spirit"],
   astroLogicalCross: ["Identity", "Emotional State", "External Influences", "Challenges", "Destiny"],
@@ -31,11 +31,21 @@ export function getTarotCardByName(name: string): TarotCard | undefined {
   return tarotCards.find((card: TarotCard) => card.name === name);
 }
 
-// Görsel yolu
+// Görsel yolu - Basitleştirilmiş ve güvenilir
 export function getTarotCardImage(card: TarotCard): string {
-  return card.img
-    ? `/images/tarot_card_images/${card.img}`
-    : `/images/tarot_card_images/${card.name.replace(/ /g, "_").toLowerCase()}.jpg`;
+  // Eğer card.img varsa, doğrudan kullan
+  if (card.img && card.img.trim() !== '') {
+    return `/images/tarot_card_images/${card.img}`;
+  }
+  
+  // Fallback: kart adından dosya adı oluştur
+  const fallbackName = card.name
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_|_$/g, '');
+  
+  return `/images/tarot_card_images/${fallbackName}.jpg`;
 }
 
 // Spread mapping (güncellenmiş)
@@ -44,8 +54,8 @@ export function mapSelectedCardsToSpread(
   cards: TarotCard[]
 ): Record<string, TarotCard> {
   const spread: Record<string, TarotCard> = {};
-  const positions = spreadPositions[spreadType.name] || [];
-  if (spreadType.name === "categoryReading") {
+  const positions = spreadPositions[spreadType.key] || [];
+  if (spreadType.key === "categoryReading") {
     cards.forEach((card, i) => {
       spread[`Card ${i + 1}`] = card;
     });
@@ -82,11 +92,11 @@ export function buildTarotPrompt({
   const userInfoSection = userInfo
     ? `User Info: ${userInfo.name ? "Name: " + userInfo.name + ", " : ""}${userInfo.age ? "Age: " + userInfo.age + ", " : ""}${userInfo.gender ? "Gender: " + userInfo.gender : ""}`
     : "General interpretation.";
-  
+
   const customPromptSection = customPrompt
     ? `Focus: "${customPrompt}"`
     : `Focus: General ${category} context.`;
-  
+
   // Optimized card details - sadece gerekli bilgiler
   const cardDetails = Object.entries(spread)
     .map(
@@ -260,7 +270,7 @@ export function generatePromptForCelticCross({ category, spread, customPrompt, l
   const spreadName = "Celtic Cross Spread";
   const persona = "You are 'Astral Tarot', a master Tarot reader providing deep, comprehensive insights using the traditional Celtic Cross.";
   const analysisFocus = "Provide a detailed, position-by-position analysis of the Celtic Cross spread, synthesizing the insights to illuminate the user's situation regarding the '${category}' category.";
-  
+
   // Optimized format - daha kısa ve öz
   const format = `
 ### 1. Present Situation (${spread["Current Situation"]?.name || "?"})
@@ -296,7 +306,7 @@ export function generatePromptForCelticCross({ category, spread, customPrompt, l
 ### Synthesis and Guidance
 [Summarize key messages. Connect positions and provide holistic guidance for '${category}'. Address custom prompt if provided.]
 `;
-  
+
   return buildTarotPrompt({ spreadName, category, spread, locale, userInfo, customPrompt, formatInstructions: format, personaDescription: persona, analysisFocus });
 }
 
@@ -304,12 +314,20 @@ export function generatePromptForYearlySpread({ category, spread, customPrompt, 
   const spreadName = "Yearly Spread";
   const persona = "You are 'Astral Tarot', foreseeing the themes and energies of the year ahead, month by month.";
   const analysisFocus = "Provide a month-by-month forecast for the '${category}' context, followed by an overall summary and guidance for the year.";
-  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  let format = months.map(m => `### ${m} (${spread[m]?.name || "?"})\n[Analyze this card's significance for this period/theme regarding '${category}'. Personalize.]`).join("\n\n");
+  
+  let format = "";
+  
+  // Yearly Summary first
   if (spread["Yearly Summary"]) {
-    format += `\n\n### Yearly Summary (${spread["Yearly Summary"].name})\n[Summarize the year's main themes, challenges, and opportunities.]`;
+    format += `### Yearly Summary (${spread["Yearly Summary"].name})\n[Summarize the year's main themes, challenges, and opportunities for '${category}'.]\n\n`;
   }
+  
+  // Then monthly cards
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  format += months.map(m => `### ${m} (${spread[m]?.name || "?"})\n[Analyze this card's significance for this period/theme regarding '${category}'. Personalize.]`).join("\n\n");
+  
   format += `\n\n### Guidance for the Year Ahead\n[Synthesize the monthly insights. Offer overall guidance, identify key themes, challenges, and opportunities for the year regarding '${category}'. Address the custom prompt.]`;
+  
   return buildTarotPrompt({ spreadName, category, spread, locale, userInfo, customPrompt, formatInstructions: format, personaDescription: persona, analysisFocus });
 }
 

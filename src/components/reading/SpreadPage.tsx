@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function SpreadPage({ spread, locale, spreadsData }: { spread: string, locale: string, spreadsData: any[] }) {
-  const t = useTranslations('common');
+  const t = useTranslations();
   const spreadObj = spreadsData.find((s: any) => s.key === spread);
   if (!spreadObj) {
     return <div className="min-h-screen flex items-center justify-center text-red-600 font-bold">{t('spread_not_found')}</div>;

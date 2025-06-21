@@ -16,7 +16,7 @@ interface Category {
 }
 
 export default function CategorySelect({ onSelect, onBack }: { onSelect: (category: string) => void, onBack?: () => void }) {
-  const t = useTranslations('common');
+  const t = useTranslations();
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {

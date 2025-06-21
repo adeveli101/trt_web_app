@@ -3,7 +3,7 @@ import Button from "../ui/button";
 import { useTranslations } from 'next-intl';
 
 export default function HeaderSection({ headerVisible }: { headerVisible: boolean }) {
-  const t = useTranslations('common');
+  const t = useTranslations();
   return (
     <>
       <header className="min-h-[calc(80vh-var(--navbar-height-mobile))] md:min-h-[calc(85vh-var(--navbar-height))] flex flex-col items-center justify-center text-center p-5 md:p-10 bg-gradient-to-br from-[var(--primary-color)] via-[#3a1053] to-[var(--bg-color)] border-b-4 border-[var(--secondary-color)] relative">

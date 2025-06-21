@@ -12,7 +12,7 @@ const categories = [
 ];
 
 export default function CategoryGridSection() {
-  const t = useTranslations('common');
+  const t = useTranslations();
   return (
     <>
       <section id="categories" className="relative py-16 md:py-24 bg-gradient-to-b from-transparent to-[var(--bg-color)] flex flex-col items-center">
